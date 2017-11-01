@@ -5,6 +5,8 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -27,6 +29,12 @@ public class HomeActivity extends AppCompatActivity
     private TextView emailTextView;
     private FirebaseAuth auth; //아이디랑 비밀번호 받아옴(싱글톤 패턴으로)
 
+    //툴바
+    private ViewPager mViewPager;
+    private Toolbar mToolbar;
+    private ViewPagerAdapter mViewPagerAdapter;
+    private TabLayout mTabLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,16 +42,18 @@ public class HomeActivity extends AppCompatActivity
 
         auth = FirebaseAuth.getInstance(); //받아옴
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
+
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-
         actionBar.setTitle("Rookie Hair Shop");
-        toolbar.setTitleTextColor(Color.WHITE);
+        mToolbar.setTitleTextColor(Color.WHITE);
 
+        setViewPager();
 
-        //오른쪽 아래에 동그라미 표시된 버튼=> 맨위로 올리기 버튼이나 문자보내기 기능하면 좋을것 같음!
+        //오른쪽 아래에 동그라미 표시된 버튼
+        // => 맨위로 올리기 버튼이나 문자보내기 기능하면 좋을것 같음!!
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,11 +62,12 @@ public class HomeActivity extends AppCompatActivity
                         .setAction("Action", null).show();
             }
         });
+        //
 
         //DrawerLayout 설정
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                this, drawer, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
@@ -71,6 +82,9 @@ public class HomeActivity extends AppCompatActivity
         //auth에서 name과 email 받아옴.
         nameTextView.setText(auth.getCurrentUser().getDisplayName());
         emailTextView.setText(auth.getCurrentUser().getEmail());
+        //
+
+
     }
 
     //뒤로 가기 버튼 처리시
@@ -142,5 +156,16 @@ public class HomeActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    //툴바 설정
+    private void setViewPager() {
+
+        mViewPager = (ViewPager) findViewById(R.id.pager);
+        mViewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+        mViewPager.setAdapter(mViewPagerAdapter);
+
+        mTabLayout = (TabLayout) findViewById(R.id.tab);
+        mTabLayout.setupWithViewPager(mViewPager);
     }
 }

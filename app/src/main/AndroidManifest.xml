@@ -39,11 +39,13 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".HomeActivity"
             android:label="@string/title_activity_home"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Fragment1" />
+        <activity android:name=".Fragment2" />
+        <activity android:name=".Fragment3"></activity>
     </application>
 
 </manifest>
