@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/my_reservation"
+            android:icon="?android:attr/actionModeCutDrawable"
+            android:title="나의 예약" />
+        <item
+            android:id="@+id/my_choose"
+            android:title="찜"
+            android:visible="false" />
+        <item
+            android:id="@+id/my_seen"
+            android:title="최근본곳" />
+    </group>
+
+    <item android:title="공지사항" >
+        <menu>
+            <item
+                android:id="@+id/service_Introduction"
+                android:icon="?android:attr/actionModePasteDrawable"
+                android:title="서비스소개" />
+            <item
+                android:id="@+id/service_Contact"
+                android:title="문의하기" />
+        </menu>
+    </item>
+
+    <item android:title="Preforences"  >
+        <menu>
+            <item
+                android:id="@+id/nav_logout"
+                android:icon="@android:drawable/ic_lock_power_off"
+                android:title="로그아웃"
+               />
+
+        </menu>
+    </item>
+
+</menu>

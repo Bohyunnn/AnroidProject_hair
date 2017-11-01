@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "626978408463",
+    "firebase_url": "https://anroidproject-c94f4.firebaseio.com",
+    "project_id": "anroidproject-c94f4",
+    "storage_bucket": "anroidproject-c94f4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:626978408463:android:3f532f5003ffade2",
+        "android_client_info": {
+          "package_name": "com.example.hansung.anroidproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "626978408463-hv0ca39sor6j572ov305ing3ffc5il5k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.hansung.anroidproject",
+            "certificate_hash": "bec0f7df4249bef3700f63b94881650130e34a31"
+          }
+        },
+        {
+          "client_id": "626978408463-mkkov088qina3dsu3regrd868ht1b8aj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByLXt7A6TwxM2-SR9oiT7mVr64U9yEt9I"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "626978408463-mkkov088qina3dsu3regrd868ht1b8aj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

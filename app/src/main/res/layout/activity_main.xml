@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.hansung.anroidproject.MainActivity">
+
+    <com.ssomai.android.scalablelayout.ScalableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/main_textview"
+        android:background="@drawable/lodingbackground3"
+        app:scale_base_height="1200"
+        app:scale_base_width="900"
+        android:layout_weight="1.09">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:scale_height="450"
+            app:scale_left="140"
+            app:scale_top="330"
+            app:scale_width="550"
+            app:srcCompat="@drawable/lodingoneimage" />
+
+    </com.ssomai.android.scalablelayout.ScalableLayout>
+
+</LinearLayout>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cardview_light_background"
+    android:orientation="vertical"
+    android:weightSum="1"
+    tools:context="com.example.hansung.anroidproject.LoginActivity">
+
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:paddingBottom="30dp"
+        android:text="안녕하세요. Rookie 헤어입니다."
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="18sp" />
+
+    <com.ssomai.android.scalablelayout.ScalableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:scale_base_height="500"
+        app:scale_base_width="900">
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:scale_height="120"
+            app:scale_left="5"
+            app:scale_top="5"
+            app:scale_width="800">
+
+            <EditText
+                android:id="@+id/edittext_email"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:ems="10"
+                android:hint="Email"
+                android:inputType="textEmailAddress" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:scale_height="120"
+            app:scale_left="5"
+            app:scale_top="110"
+            app:scale_width="800">
+
+            <EditText
+                android:id="@+id/edittext_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Password"
+                android:inputType="textPassword" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:id="@+id/emaillogin_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button"
+            android:textAlignment="center"
+            android:textSize="10sp"
+            app:scale_height="150"
+            app:scale_left="10"
+            app:scale_textsize="40"
+            app:scale_top="215"
+            app:scale_width="880"
+            app:textview_wrapcontent_direction="bottom"
+            app:textview_wrapcontent_movesiblings="true"
+            app:textview_wrapcontent_resizesurrounded="true" />
+
+    </com.ssomai.android.scalablelayout.ScalableLayout>
+
+
+    <com.ssomai.android.scalablelayout.ScalableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:scale_base_height="1200"
+        app:scale_base_width="900">
+
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/loginbutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            app:scale_height="140"
+            app:scale_left="10"
+            app:scale_textsize="50"
+            app:scale_top="100"
+            app:scale_width="880"
+            app:textview_wrapcontent_direction="bottom"
+            app:textview_wrapcontent_movesiblings="true"
+            app:textview_wrapcontent_resizesurrounded="true" />
+
+        <com.facebook.login.widget.LoginButton
+            android:id="@+id/facebook_login_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:scale_height="140"
+            app:scale_left="10"
+            app:scale_textsize="50"
+            app:scale_top="250"
+            app:scale_width="880"
+            app:textview_wrapcontent_direction="bottom"
+            app:textview_wrapcontent_movesiblings="true"
+            app:textview_wrapcontent_resizesurrounded="true" />
+
+
+    </com.ssomai.android.scalablelayout.ScalableLayout>
+
+</LinearLayout>
