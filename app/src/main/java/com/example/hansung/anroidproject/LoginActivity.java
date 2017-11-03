@@ -2,9 +2,13 @@ package com.example.hansung.anroidproject;
 
 import android.content.Intent;
 
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -80,7 +84,63 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             }
         });
         editTextEmail = (EditText) findViewById(R.id.edittext_email);
+
+        //ID, Password 이벤트
         editTextPassword = (EditText) findViewById(R.id.edittext_password);
+
+        editTextEmail.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                //입력 전
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // 입력되는 텍스트에 변화가 있을 때 저는 주로 이곳을이용하여 사용합니다.
+                String text = s.toString();
+
+                if (text.length() != 0) {
+                    int color = Color.parseColor("#304FFE");
+                    editTextEmail.getBackground().setColorFilter(color, PorterDuff.Mode.SRC_IN);
+                } else {
+                    int color = Color.parseColor("#F50057");
+                    editTextEmail.getBackground().setColorFilter(color, PorterDuff.Mode.SRC_IN);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                // 입력이 끝난후에
+
+            }
+        });
+
+        editTextPassword.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                //입력 전
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // 입력되는 텍스트에 변화가 있을 때 저는 주로 이곳을이용하여 사용합니다.
+                String text = s.toString();
+
+                if (text.length() != 0) {
+                    int color = Color.parseColor("#304FFE");
+                    editTextPassword.getBackground().setColorFilter(color, PorterDuff.Mode.SRC_IN);
+                } else {
+                    int color = Color.parseColor("#F50057");
+                    editTextPassword.getBackground().setColorFilter(color, PorterDuff.Mode.SRC_IN);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                // 입력이 끝난후에
+
+            }
+        });
 
         Button emailLogin = (Button) findViewById(R.id.emaillogin_button);
         emailLogin.setOnClickListener(new View.OnClickListener() {
