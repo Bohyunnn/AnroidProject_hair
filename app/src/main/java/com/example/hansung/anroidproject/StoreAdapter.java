@@ -2,6 +2,7 @@ package com.example.hansung.anroidproject;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -56,7 +57,7 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder
     }
 
     @Override
-    public void onBindViewHolder(final MyViewHolder holder, int position) {
+    public void onBindViewHolder(final MyViewHolder holder, final int position) {
         Store store = storeList.get(position);
         holder.address.setText(store.getAddress());
         holder.storename.setText(store.getStoreName());
@@ -65,10 +66,16 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder
         // loading album cover using Glide library
         Glide.with(mContext).load(store.getStoreImage()).into(holder.storeimage);
 
-        holder.overflow.setOnClickListener(new View.OnClickListener() {
+        holder.storeimage.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                showPopupMenu(holder.overflow);
+            public void onClick(View v) {
+                Intent intent=new Intent(mContext,DetailStoreAdapter.class);
+                intent.putExtra("storeimage",Integer.toString(storeList.get(position).getStoreImage()));
+                //intent.putExtra("storeimage",storeList.get(position).getStoreImage());
+                intent.putExtra("address",storeList.get(position).getAddress());
+                intent.putExtra("storename",storeList.get(position).getStoreName());
+                intent.putExtra("name",storeList.get(position).getName());
+                mContext.startActivity(intent);
             }
         });
     }
