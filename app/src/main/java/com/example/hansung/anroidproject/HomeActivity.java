@@ -99,7 +99,6 @@ public class HomeActivity extends AppCompatActivity
     }
 
 
-
     //res/menu/home.xml 부분
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -134,11 +133,8 @@ public class HomeActivity extends AppCompatActivity
         if (id == R.id.my_reservation) {
             // Handle the camera action
 
-        } else if (id == R.id.my_choose) {
-
-        } else if (id == R.id.my_seen) {
-
-        }  else if (id == R.id.service_Introduction) {
+        } else if (id == R.id.service_Introduction) {
+            Intent intent = new Intent();
 
         } else if (id == R.id.service_Contact) {
 
