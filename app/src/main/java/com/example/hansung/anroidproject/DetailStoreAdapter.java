@@ -5,6 +5,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,6 +22,7 @@ public class DetailStoreAdapter extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_store_adapter);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("스타일");
@@ -39,4 +41,18 @@ public class DetailStoreAdapter extends AppCompatActivity {
         textView2.setText(intent.getStringExtra("storename"));
         textView3.setText("주소 " + intent.getStringExtra("address"));
     }
+
+    //ActionBar's Back Button
+    public boolean onOptionsItemSelected(android.view.MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                // NavUtils.navigateUpFromSameTask(this);
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    };
+
+
+
 }
