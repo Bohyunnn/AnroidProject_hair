@@ -118,7 +118,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
-                            android:layout_below="@id/storeimage"
                             android:layout_marginTop="@dimen/ic_album_overflow_margin_top"
                             android:gravity="right"
                             android:padding="4dp"

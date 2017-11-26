@@ -69,7 +69,7 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder
         holder.storeimage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(mContext,DetailStoreAdapter.class);
+                Intent intent=new Intent(mContext,DetailStore.class);
                 intent.putExtra("storeimage",Integer.toString(storeList.get(position).getStoreImage()));
                 //intent.putExtra("storeimage",storeList.get(position).getStoreImage());
                 intent.putExtra("address",storeList.get(position).getAddress());
