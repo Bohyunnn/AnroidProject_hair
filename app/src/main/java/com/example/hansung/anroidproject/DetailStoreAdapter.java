@@ -51,7 +51,7 @@ public class DetailStoreAdapter extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
-    };
+    }
 
 
 

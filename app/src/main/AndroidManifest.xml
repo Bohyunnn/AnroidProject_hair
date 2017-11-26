@@ -47,7 +47,8 @@
         <activity android:name=".Fragment2" />
         <activity android:name=".Fragment3" />
         <activity android:name=".DetailStoreAdapter" />
-        <activity android:name=".ServiceIntro"></activity>
+        <activity android:name=".ServiceIntro" />
+        <activity android:name=".ServiceContact"></activity>
     </application>
 
 </manifest>

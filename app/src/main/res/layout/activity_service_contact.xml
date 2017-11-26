@@ -5,13 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.hansung.anroidproject.ServiceIntro">
+    tools:context="com.example.hansung.anroidproject.ServiceContact">
+
 
     <TextView
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="서비스 소개"
+        android:text="문의하기"
         android:textSize="24sp"
         android:textStyle="bold"
         tools:layout_editor_absoluteX="16dp"
