@@ -28,7 +28,6 @@ public class DetailStore extends AppCompatActivity {
     ImageView imageView;
     Intent intent;
     private int storeimage;
-    private String name, storeName, address;
 
     private DetailStoreAdapter adapter;
     private List<Product> productList;

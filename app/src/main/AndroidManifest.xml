@@ -48,7 +48,8 @@
         <activity android:name=".Fragment3" />
         <activity android:name=".DetailStore" />
         <activity android:name=".ServiceIntro" />
-        <activity android:name=".ServiceContact"></activity>
+        <activity android:name=".ServiceContact" />
+        <activity android:name=".DetailStorePOP" android:theme="@android:style/Theme.Dialog"/>
     </application>
 
 </manifest>
