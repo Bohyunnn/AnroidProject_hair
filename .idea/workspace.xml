@@ -23,7 +23,11 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="No Filters" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5510fa73-9a9b-4c93-917b-981196365f17" name="Default" comment="" />
+    <list default="true" id="5510fa73-9a9b-4c93-917b-981196365f17" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.1/fileHashes/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/4.1/fileHashes/fileHashes.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.1/fileHashes/fileHashes.lock" afterPath="$PROJECT_DIR$/.gradle/4.1/fileHashes/fileHashes.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="AnroidProject.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -167,7 +171,7 @@
           </provider>
           <provider editor-type-id="text-editor">
             <state relative-caret-position="430">
-              <caret line="109" column="28" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="137" selection-end-column="15" />
+              <caret line="109" column="28" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="119" selection-end-column="15" />
               <folding />
             </state>
           </provider>
@@ -177,19 +181,22 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/hansung/anroidproject/StoreAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="90">
-              <caret line="40" column="68" lean-forward="false" selection-start-line="40" selection-start-column="68" selection-end-line="40" selection-end-column="68" />
+              <caret line="41" column="70" lean-forward="false" selection-start-line="41" selection-start-column="70" selection-end-line="41" selection-end-column="70" />
               <folding>
-                <element signature="e#2880#2881#0" expanded="true" />
-                <marker date="1512133954679" expanded="true" signature="1245:1313" ph="{...}" />
-                <marker date="1512133954679" expanded="true" signature="1387:1464" ph="{...}" />
-                <marker date="1512133954679" expanded="true" signature="2212:2304" ph="(v) → {" />
-                <marker date="1512133954679" expanded="true" signature="2895:2955" ph="/**...*/" />
-                <marker date="1512133954679" expanded="true" signature="2998:3300" ph="{...}" />
-                <marker date="1512133954679" expanded="true" signature="3306:3360" ph="/**...*/" />
-                <marker date="1512133954679" expanded="true" signature="3440:4036" ph="{...}" />
-                <marker date="1512133954679" expanded="true" signature="3484:3495" ph="{...}" />
-                <marker date="1512133954679" expanded="true" signature="3573:4030" ph="{...}" />
-                <marker date="1512133954679" expanded="false" signature="4116:4122" ph=" }" />
+                <marker date="1512134437966" expanded="true" signature="1259:1327" ph="{...}" />
+                <marker date="1512134437966" expanded="true" signature="1401:1478" ph="{...}" />
+                <marker date="1512134437966" expanded="true" signature="1569:1747" ph="{...}" />
+                <marker date="1512134437966" expanded="true" signature="1843:2903" ph="{...}" />
+                <marker date="1512134437966" expanded="true" signature="2226:2318" ph="(v) → {" />
+                <marker date="1512134437966" expanded="true" signature="2880:2895" ph="}" />
+                <marker date="1512134437966" expanded="true" signature="2909:2969" ph="/**...*/" />
+                <marker date="1512134437966" expanded="true" signature="3012:3314" ph="{...}" />
+                <marker date="1512134437966" expanded="true" signature="3320:3374" ph="/**...*/" />
+                <marker date="1512134437966" expanded="true" signature="3454:4050" ph="{...}" />
+                <marker date="1512134437966" expanded="true" signature="3498:3509" ph="{...}" />
+                <marker date="1512134437966" expanded="true" signature="3587:4044" ph="{...}" />
+                <marker date="1512134437966" expanded="false" signature="4095:4106" ph=" { " />
+                <marker date="1512134437966" expanded="false" signature="4130:4136" ph=" }" />
               </folding>
             </state>
           </provider>
@@ -2264,7 +2271,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1512134233674" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1512134487894" />
       </method>
     </configuration>
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests">
@@ -2312,7 +2319,7 @@
       </Profilers>
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1512134233674" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1512134487895" />
       </method>
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -2495,7 +2502,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1512134233675" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1512134487896" />
       </method>
     </configuration>
     <list size="2">
@@ -3121,7 +3128,7 @@
       </provider>
       <provider editor-type-id="text-editor">
         <state relative-caret-position="430">
-          <caret line="109" column="28" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="137" selection-end-column="15" />
+          <caret line="109" column="28" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="119" selection-end-column="15" />
           <folding />
         </state>
       </provider>
@@ -3129,19 +3136,22 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/hansung/anroidproject/StoreAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
-          <caret line="40" column="68" lean-forward="false" selection-start-line="40" selection-start-column="68" selection-end-line="40" selection-end-column="68" />
+          <caret line="41" column="70" lean-forward="false" selection-start-line="41" selection-start-column="70" selection-end-line="41" selection-end-column="70" />
           <folding>
-            <element signature="e#2880#2881#0" expanded="true" />
-            <marker date="1512133954679" expanded="true" signature="1245:1313" ph="{...}" />
-            <marker date="1512133954679" expanded="true" signature="1387:1464" ph="{...}" />
-            <marker date="1512133954679" expanded="true" signature="2212:2304" ph="(v) → {" />
-            <marker date="1512133954679" expanded="true" signature="2895:2955" ph="/**...*/" />
-            <marker date="1512133954679" expanded="true" signature="2998:3300" ph="{...}" />
-            <marker date="1512133954679" expanded="true" signature="3306:3360" ph="/**...*/" />
-            <marker date="1512133954679" expanded="true" signature="3440:4036" ph="{...}" />
-            <marker date="1512133954679" expanded="true" signature="3484:3495" ph="{...}" />
-            <marker date="1512133954679" expanded="true" signature="3573:4030" ph="{...}" />
-            <marker date="1512133954679" expanded="false" signature="4116:4122" ph=" }" />
+            <marker date="1512134437966" expanded="true" signature="1259:1327" ph="{...}" />
+            <marker date="1512134437966" expanded="true" signature="1401:1478" ph="{...}" />
+            <marker date="1512134437966" expanded="true" signature="1569:1747" ph="{...}" />
+            <marker date="1512134437966" expanded="true" signature="1843:2903" ph="{...}" />
+            <marker date="1512134437966" expanded="true" signature="2226:2318" ph="(v) → {" />
+            <marker date="1512134437966" expanded="true" signature="2880:2895" ph="}" />
+            <marker date="1512134437966" expanded="true" signature="2909:2969" ph="/**...*/" />
+            <marker date="1512134437966" expanded="true" signature="3012:3314" ph="{...}" />
+            <marker date="1512134437966" expanded="true" signature="3320:3374" ph="/**...*/" />
+            <marker date="1512134437966" expanded="true" signature="3454:4050" ph="{...}" />
+            <marker date="1512134437966" expanded="true" signature="3498:3509" ph="{...}" />
+            <marker date="1512134437966" expanded="true" signature="3587:4044" ph="{...}" />
+            <marker date="1512134437966" expanded="false" signature="4095:4106" ph=" { " />
+            <marker date="1512134437966" expanded="false" signature="4130:4136" ph=" }" />
           </folding>
         </state>
       </provider>
