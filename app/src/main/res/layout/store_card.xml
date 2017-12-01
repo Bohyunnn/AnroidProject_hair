@@ -109,24 +109,6 @@
 
                     </RelativeLayout>
 
-                    <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-                        <ImageView
-                            android:id="@+id/overflow"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_marginTop="@dimen/ic_album_overflow_margin_top"
-                            android:gravity="right"
-                            android:padding="4dp"
-                            android:scaleType="centerCrop"
-                            android:src="@android:drawable/ic_menu_info_details"
-                            android:text="right" />
-
-                    </RelativeLayout>
-
                 </LinearLayout>
 
             </LinearLayout>

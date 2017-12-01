@@ -1,12 +1,13 @@
 package com.example.hansung.anroidproject;
 
+
 import java.util.List;
 
 /**
  * Created by kimsungmin on 2017-11-03.
  */
 
-public class Store {
+public class Store{
     private String shopCode;
     private String address; //미용실 위치
     private int storeImage;  //미용실 사진
@@ -85,4 +86,6 @@ public class Store {
     public void setName(String name) {
         this.name = name;
     }
+
+
 }

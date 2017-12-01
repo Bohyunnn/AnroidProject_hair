@@ -29,7 +29,8 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView address, storename, name; //주소, 가게이름, 이름
-        public ImageView storeimage, overflow; //가게 이미지, 버튼
+        public ImageView storeimage;
+        //, overflow; //가게 이미지, 버튼
 
         public MyViewHolder(View view) {
             super(view);
@@ -38,7 +39,7 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder
             name = (TextView) view.findViewById(R.id.name);
 
             storeimage = (ImageView) view.findViewById(R.id.storeimage);
-            overflow = (ImageView) view.findViewById(R.id.overflow);
+          //  overflow = (ImageView) view.findViewById(R.id.overflow);
         }
     }
 
