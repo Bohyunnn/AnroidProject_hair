@@ -99,7 +99,6 @@ public class HomeActivity extends AppCompatActivity
     }
 
 
-
     //res/menu/home.xml 부분
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -132,19 +131,20 @@ public class HomeActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.my_reservation) {
-            // Handle the camera action
+            //나의 예약 현황을 알 수 있는 기능
 
-        } else if (id == R.id.my_choose) {
-
-        } else if (id == R.id.my_seen) {
-
-        }  else if (id == R.id.service_Introduction) {
+        } else if (id == R.id.service_Introduction) {
+           //서비스 소개(ROOKIES 앱에 대한 소개)
+            Intent intent = new Intent(this,ServiceIntro.class);
+            startActivity(intent);
 
         } else if (id == R.id.service_Contact) {
-
+            //문의하기(고객센터에 문의해서 이메일 보내 헤어디자이너로 변경)
+            Intent intent = new Intent(this,ServiceContact.class);
+            startActivity(intent);
         }
-        //로그아웃 된경우
         else if (id == R.id.nav_logout) {
+           //로그아웃
             auth.signOut();
             LoginManager.getInstance().logOut(); //facebook logout 경우
             finish();

@@ -9,16 +9,16 @@ import android.view.ViewGroup;
 
 public class Fragment3 extends Fragment {
 
-    public static final String TITLE = "예약 현황";
+  public static final String TITLE = "예약 현황";
 
-    public static Fragment3 newInstance() {
+  public static Fragment3 newInstance() {
 
-        return new Fragment3();
-    }
+    return new Fragment3();
+  }
 
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.activity_fragment3, container, false);
-    }
+  @Nullable
+  @Override
+  public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+    return inflater.inflate(R.layout.activity_fragment3, container, false);
+  }
 }

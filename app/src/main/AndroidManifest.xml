@@ -3,6 +3,7 @@
     package="com.example.hansung.anroidproject">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -45,7 +46,11 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Fragment1" />
         <activity android:name=".Fragment2" />
-        <activity android:name=".Fragment3"></activity>
+        <activity android:name=".Fragment3" />
+        <activity android:name=".DetailStore" />
+        <activity android:name=".ServiceIntro" />
+        <activity android:name=".ServiceContact" />
+        <activity android:name=".DetailStorePOP" android:theme="@android:style/Theme.Dialog"/>
     </application>
 
 </manifest>
