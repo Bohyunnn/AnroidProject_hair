@@ -1,5 +1,9 @@
 package com.example.hansung.anroidproject;
 
+import android.content.Context;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
@@ -23,16 +27,22 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.jaredrummler.materialspinner.MaterialSpinner;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Fragment2 extends Fragment implements OnMapReadyCallback {
     private ViewGroup rootView;
-    ArrayAdapter<CharSequence> adspin1, adspin2;
-    String choice_do = "";
-    String choice_se = "";
+    private ArrayAdapter<CharSequence> adspin1, adspin2;
+    private String choice_do = "";
+    private String choice_se = "";
 
     private GoogleMap map;
     private LatLng Storelocation;
+    private LatLng Searchlocation;
+    private LatLng Basiclocation;
+
+    private static double lat = 37.554698, lon = 126.970563; //'서울역'의 위도, 경도
 
     public static final String TITLE = "위치 검색";
 
@@ -110,8 +120,13 @@ public class Fragment2 extends Fragment implements OnMapReadyCallback {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, " " + choice_do + " " + choice_se + " 검색합니다.", Snackbar.LENGTH_LONG).show();
+                findGeoPoint(getContext(), choice_do + " " + choice_se);
+                Toast.makeText(getContext(), choice_do + " " + choice_se + "로 검색합니다.", Toast.LENGTH_SHORT).show();
+                Searchlocation = new LatLng(lat, lon);  //새로운 위도, 경도로 검색
+                map.moveCamera(CameraUpdateFactory.newLatLngZoom(Searchlocation, 15));
             }
         });
+
         //--------------------------------------------------
         // 지도 설정
         //supportMapFragment을 통해 레이아웃에 만든 fragment의 ID를 참조하고 구글맵을 호출함,
@@ -129,12 +144,14 @@ public class Fragment2 extends Fragment implements OnMapReadyCallback {
         // 구글 맵 객체를 불러온다.
         map = googleMap;
 
-        // 서울 여의도에 대한 위치 설정
         //마커 위치에 대한 정보=> LatLng
-        Storelocation = new LatLng(37.52487, 126.92723);
 
-        //카메라를 여의도 위치로 옮긴다.
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom(Storelocation, 15));
+        //가게들 위치-> ArrayList로 변경해 여러개 가게 보이게 하기!!!
+        Storelocation = new LatLng(37.52487, 126.92723);
+        Basiclocation = new LatLng(lat, lon);
+
+        //검색된 결과가 없을 시 기본 카메라 위치-> 서울역
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(Basiclocation, 15));
 
         onAddMarker();
     }
@@ -184,5 +201,34 @@ public class Fragment2 extends Fragment implements OnMapReadyCallback {
             return false;
         }
     };
+
+    /**
+     * 주소로부터 위치정보 취득
+     *
+     * @param address 주소
+     */
+    public static Location findGeoPoint(Context mcontext, String address) {
+        Location loc = new Location("");
+        Geocoder coder = new Geocoder(mcontext);
+        List<Address> addr = null;// 한좌표에 대해 두개이상의 이름이 존재할수있기에 주소배열을 리턴받기 위해 설정
+
+        try {
+            addr = coder.getFromLocationName(address, 5);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }// 몇개 까지의 주소를 원하는지 지정 1~5개 정도가 적당
+        if (addr != null) {
+            for (int i = 0; i < addr.size(); i++) {
+                Address lating = addr.get(i);
+                lat = lating.getLatitude(); // 위도가져오기
+                lon = lating.getLongitude(); // 경도가져오기
+                loc.setLatitude(lat);
+                loc.setLongitude(lon);
+            }
+        }
+        return loc;
+    }
+
 
 }
