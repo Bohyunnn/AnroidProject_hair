@@ -25,7 +25,7 @@
             android:value="@string/facebook_app_id" />
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyAt0K5XMc2lgpaPc5d6KmgKHal_-tkDW_c"/>
+            android:value="AIzaSyAt0K5XMc2lgpaPc5d6KmgKHal_-tkDW_c" />
 
         <activity
             android:name="com.facebook.FacebookActivity"
@@ -53,7 +53,10 @@
         <activity android:name=".DetailStore" />
         <activity android:name=".ServiceIntro" />
         <activity android:name=".ServiceContact" />
-        <activity android:name=".DetailStorePOP" android:theme="@android:style/Theme.Dialog"/>
+        <activity
+            android:name=".DetailStorePOP"
+            android:theme="@android:style/Theme.Dialog" />
+        <activity android:name=".DetailStorePOP_location"></activity>
     </application>
 
 </manifest>

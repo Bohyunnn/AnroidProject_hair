@@ -14,8 +14,10 @@ import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.bumptech.glide.Glide;
@@ -32,6 +34,9 @@ public class DetailStore extends AppCompatActivity {
     private DetailStoreAdapter adapter;
     private List<Product> productList;
     private RecyclerView recyclerView;
+
+    private Button locationSearch; //지도 검색
+    private String storename,location;
 
 
     @Override
@@ -54,8 +59,10 @@ public class DetailStore extends AppCompatActivity {
         storeimage = Integer.parseInt(intent.getStringExtra("storeimage"));
 //        imageView.setImageResource(storeimage);
 //        textView1.setText(intent.getStringExtra("name"));
-        textView1.setText(intent.getStringExtra("storename"));
-        textView2.setText("주소 " + intent.getStringExtra("address"));
+        storename=intent.getStringExtra("storename");
+        textView1.setText(storename);
+        location = intent.getStringExtra("address");
+        textView2.setText(location);
 
         //
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
@@ -76,6 +83,8 @@ public class DetailStore extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        locationSearch = (Button) findViewById(R.id.locationSearch);
 
     }
 
@@ -104,6 +113,15 @@ public class DetailStore extends AppCompatActivity {
 
         a = new Product("탈색", 20000);
         productList.add(a);
+    }
+
+    public void onLocationSearch(View view) {
+        //지도 클릭시 지도 띄어줄 부분
+        Toast.makeText(this, location + " 지도를 보여줘!", Toast.LENGTH_SHORT).show();
+        Intent intent2 = new Intent(this, DetailStorePOP_location.class);
+        intent2.putExtra("storename",storename);
+        intent2.putExtra("location", location);
+        startActivity(intent2);
     }
 
     public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
