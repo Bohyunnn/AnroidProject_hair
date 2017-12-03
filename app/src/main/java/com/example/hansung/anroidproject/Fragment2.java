@@ -13,8 +13,6 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.jaredrummler.materialspinner.MaterialSpinner;
-
 public class Fragment2 extends Fragment {
     private ViewGroup rootView;
     ArrayAdapter<CharSequence> adspin1, adspin2;
