@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
@@ -28,7 +29,7 @@
     <color name="deep_purple_500">#673AB7</color>
     <color name="deep_purple_600">#5E35B1</color>
     <color name="deep_purple_700">#512DA8</color>
-    <color name="deep_purple_800">#4527A0</color>
+    <color name="deep_purple_800">#4527a0</color>
     <color name="deep_purple_900">#311B92</color>
     <color name="deep_purple_A100">#B388FF</color>
     <color name="deep_purple_A200">#7C4DFF</color>
