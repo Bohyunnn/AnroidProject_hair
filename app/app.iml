@@ -159,11 +159,11 @@
     <orderEntry type="library" name="com.android.support:appcompat-v7-27.0.1" level="project" />
     <orderEntry type="library" scope="TEST" name="junit:junit:4.12@jar" level="project" />
     <orderEntry type="library" name="com.facebook.android:facebook-common-4.29.0" level="project" />
+    <orderEntry type="library" name="com.jaredrummler:material-spinner-1.2.2" level="project" />
     <orderEntry type="library" scope="TEST" name="javax.inject:javax.inject:1@jar" level="project" />
     <orderEntry type="library" name="com.google.android.gms:play-services-basement-11.0.1" level="project" />
     <orderEntry type="library" name="com.google.firebase:firebase-analytics-11.0.1" level="project" />
     <orderEntry type="library" name="com.parse.bolts:bolts-applinks:1.4.0@jar" level="project" />
-    <orderEntry type="library" name="com.jaredrummler:material-spinner-1.2.1" level="project" />
     <orderEntry type="library" name="com.android.support:support-annotations:27.0.1@jar" level="project" />
     <orderEntry type="library" name="com.ssomai:android.scalablelayout-2.1.6" level="project" />
     <orderEntry type="library" name="com.google.android.gms:play-services-auth-base-11.0.1" level="project" />
