@@ -22,6 +22,8 @@ public class DetailStorePOP_Book extends Activity {
     private int mYear, mMonth, mDay, mHour, mMinute;
     private TextView mTxtDate;
     private TextView mTxtTime;
+    String Date;
+    String Time;
 
 
     @Override
@@ -98,8 +100,10 @@ public class DetailStorePOP_Book extends Activity {
 
     //텍스트뷰의 값을 업데이트 하는 메소드
     void UpdateNow() {
-        mTxtDate.setText(String.format("%d년 %d월 %d일", mYear, mMonth + 1, mDay));
-        mTxtTime.setText(String.format("%d시 %d분", mHour, mMinute));
+        Date=String.format("%d년 %d월 %d일", mYear, mMonth + 1, mDay);
+        mTxtDate.setText(Date);
+        Time=String.format("%d시 %d분", mHour, mMinute);
+        mTxtTime.setText(Time);
     }
 
     //예약하기 버튼 클릭
@@ -109,8 +113,9 @@ public class DetailStorePOP_Book extends Activity {
 //        intent.putExtra("result", "Close Popup");
 //        setResult(RESULT_OK, intent);
 //
-//        Intent intent=new Intent(this,DetailStorePOP_Book.class);
-//        startActivity(intent);
+        Intent intent=new Intent(this,HomeActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
         Toast.makeText(this, "예약하기 누름", Toast.LENGTH_SHORT).show();
     }
 
