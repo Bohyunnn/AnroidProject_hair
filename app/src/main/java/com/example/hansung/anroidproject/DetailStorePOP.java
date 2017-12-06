@@ -43,7 +43,7 @@ public class DetailStorePOP extends Activity {
         Toast.makeText(this,"예약하기 누름",Toast.LENGTH_SHORT).show();
     }
 
-    //예약하기 버튼 클릭
+    //취소버튼 
     public void cancelButton(View v) {
         //액티비티(팝업) 닫기
         finish();
