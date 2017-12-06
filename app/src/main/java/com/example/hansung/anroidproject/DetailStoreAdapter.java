@@ -12,6 +12,8 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.hansung.anroidproject.model.Product;
+
 import java.util.List;
 
 /**

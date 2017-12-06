@@ -1,5 +1,7 @@
-package com.example.hansung.anroidproject;
+package com.example.hansung.anroidproject.model;
 
+
+import com.example.hansung.anroidproject.model.Product;
 
 import java.util.List;
 
@@ -8,7 +10,7 @@ import java.util.List;
  */
 
 public class Store{
-    private String shopCode;
+    private String storeCode;
     private String address; //미용실 위치
     private int storeImage;  //미용실 사진
     private String storeName; //미용사 가게 이름
@@ -19,7 +21,7 @@ public class Store{
     }
 
     public Store(String shopCode, List<Product> products) {
-        this.shopCode = shopCode;
+        this.storeCode = sCode;
         this.products = products;
     }
 
