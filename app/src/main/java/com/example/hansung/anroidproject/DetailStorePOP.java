@@ -28,7 +28,7 @@ public class DetailStorePOP extends Activity {
         Intent intent = getIntent();
         String name = intent.getStringExtra("ProductName");
         String price = intent.getStringExtra("ProductPrice");
-        ProductName.setText("[ "+name +" ] "+price+" 입니다.");
+        ProductName.setText("[ " + name + " ] " + price + " 입니다.");
     }
 
     //예약하기 버튼 클릭
@@ -38,16 +38,16 @@ public class DetailStorePOP extends Activity {
 //        intent.putExtra("result", "Close Popup");
 //        setResult(RESULT_OK, intent);
 //
-//        //액티비티(팝업) 닫기
-//        finish();
-        Toast.makeText(this,"예약하기 누름",Toast.LENGTH_SHORT).show();
+        Intent intent=new Intent(this,DetailStorePOP_Book.class);
+        startActivity(intent);
+        Toast.makeText(this, "예약하기 누름", Toast.LENGTH_SHORT).show();
     }
 
-    //취소버튼 
+    //취소버튼
     public void cancelButton(View v) {
         //액티비티(팝업) 닫기
         finish();
-        Toast.makeText(this,"취소 누름",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "취소 누름", Toast.LENGTH_SHORT).show();
     }
 
     @Override

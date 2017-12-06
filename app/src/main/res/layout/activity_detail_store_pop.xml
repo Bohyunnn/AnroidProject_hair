@@ -55,7 +55,7 @@
             android:layout_marginBottom="3dp"
             android:alpha="0.87"
             android:gravity="center"
-            android:text="예약하시겠습니까?"
+            android:text="예약을 진행하시겠습니까?"
             android:textColor="#000"
             android:textSize="15sp" />
     </LinearLayout>

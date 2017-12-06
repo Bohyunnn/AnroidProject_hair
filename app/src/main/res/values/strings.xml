@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">RookieHairShop</string>
+    <string name="app_name" translatable="false">RookieHairShop</string>
 
     <string name="facebook_app_id">287934418356296</string>
     <string name="fb_login_protocol_scheme">fb287934418356296</string>
@@ -14,6 +14,6 @@
 
     <string name="action_add_favourite">Add to Favourites</string>
     <string name="action_play_next">Play Next</string>
-    <string name="backdrop_title">ROOKIE HAIR SHOP</string>
-    <string name="backdrop_subtitle"> </string>
+    <string name="backdrop_title" translatable="false">ROOKIE HAIR SHOP</string>
+    <string name="backdrop_subtitle" translatable="false"> </string>
 </resources>
