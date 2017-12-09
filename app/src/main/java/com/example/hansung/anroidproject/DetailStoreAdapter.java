@@ -54,8 +54,8 @@ public class DetailStoreAdapter extends RecyclerView.Adapter<DetailStoreAdapter.
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
         final Product product = productList.get(position);
-        holder.ProductName.setText(product.getProductName());
-        holder.ProductPrice.setText(product.getProductPrice() + "원");
+        holder.ProductName.setText(product.getName());
+        holder.ProductPrice.setText(product.getPrice() + "원");
 
         // loading album cover using Glide library
         //Glide.with(mContext).load(product.getProductName()).into(holder.ProductName);
@@ -63,10 +63,10 @@ public class DetailStoreAdapter extends RecyclerView.Adapter<DetailStoreAdapter.
         holder.reservation_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(mContext, productList.get(position).getProductName() + " 예약하기 버튼 누름", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, productList.get(position).getName() + " 예약하기 버튼 누름", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(mContext, DetailStorePOP.class);
-                intent.putExtra("ProductName", product.getProductName());
-                intent.putExtra("ProductPrice", product.getProductPrice()+"원");
+                intent.putExtra("ProductName", product.getName());
+                intent.putExtra("ProductPrice", product.getPrice()+"원");
                 mContext.startActivity(intent);
             }
         });

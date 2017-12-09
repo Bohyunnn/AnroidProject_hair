@@ -17,7 +17,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.example.hansung.anroidproject.model.Store;
+import com.example.hansung.anroidproject.model.Shop;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +25,7 @@ import java.util.List;
 public class Fragment1 extends Fragment {
 
     private StoreAdapter adapter;
-    private List<Store> storeList;
+    private List<Shop> shopList;
     private ViewGroup rootView;
     private RecyclerView recyclerView;
     public static final String TITLE = "스타일";
@@ -44,8 +44,8 @@ public class Fragment1 extends Fragment {
 
         recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
 
-        storeList = new ArrayList<>();
-        adapter = new StoreAdapter(getContext(), storeList);
+        shopList = new ArrayList<>();
+        adapter = new StoreAdapter(getContext(), shopList);
 
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getContext(), 2);
         recyclerView.setLayoutManager(mLayoutManager);
@@ -113,20 +113,20 @@ public class Fragment1 extends Fragment {
                 android.R.mipmap.sym_def_app_icon
         };
 
-        Store a = new Store("서울특별시 마포구 신수동 91", covers[0], "승찬이의샵", "백승찬");
-        storeList.add(a);
+        Shop a = new Shop("서울특별시 마포구 신수동 91", covers[0], "승찬이의샵", "백승찬");
+        shopList.add(a);
 
-        a = new Store("서울시 은평구 응암동 174", covers[1], "보현이의샵", "김보현");
-        storeList.add(a);
+        a = new Shop("서울시 은평구 응암동 174", covers[1], "보현이의샵", "김보현");
+        shopList.add(a);
 
-        a = new Store("서울특별시 성북구 삼선동 삼선교로16길 116", covers[2], "준영이의샵", "허준영");
-        storeList.add(a);
+        a = new Shop("서울특별시 성북구 삼선동 삼선교로16길 116", covers[2], "준영이의샵", "허준영");
+        shopList.add(a);
 
-        a = new Store("서울특별시 서대문구 홍제1동 통일로 405", covers[3], "춘향이의샵", "춘향이");
-        storeList.add(a);
+        a = new Shop("서울특별시 서대문구 홍제1동 통일로 405", covers[3], "춘향이의샵", "춘향이");
+        shopList.add(a);
 
-        a = new Store("서울특별시 서초구 서초동 1685-8", covers[4], "길동이의샵", "홍길동");
-        storeList.add(a);
+        a = new Shop("서울특별시 서초구 서초동 1685-8", covers[4], "길동이의샵", "홍길동");
+        shopList.add(a);
 
 
         adapter.notifyDataSetChanged();

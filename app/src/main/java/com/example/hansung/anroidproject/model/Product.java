@@ -1,37 +1,50 @@
 package com.example.hansung.anroidproject.model;
 
-import java.util.List;
-
+/**
+ * Created by USER on 2017-12-06.
+ */
 
 public class Product {
-    private List<Product> productList;
 
-    private int productCode;  //제품 코드
-    private String productName;  //제품 이름
-    private int productPrice;   //제품 가격
-    private Store store;
+    /* Fields */
+    private int id;
 
-    public Product() {
+    private String name;
+
+    private int price;
+
+    /* Constructors */
+    public Product(){
+
     }
 
-    public Product(String productName, int productPrice) {
-        this.productName = productName;
-        this.productPrice = productPrice;
+    public Product(String name, int price){
+        this.name = name;
+        this.price = price;
     }
 
-    public String getProductName() {
-        return productName;
+    /* Getters and setters */
+    public int getId() {
+        return id;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public int getProductPrice() {
-        return productPrice;
+    public String getName() {
+        return name;
     }
 
-    public void setProductPrice(int productPrice) {
-        this.productPrice = productPrice;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 }

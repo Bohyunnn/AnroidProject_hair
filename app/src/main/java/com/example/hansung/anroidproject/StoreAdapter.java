@@ -15,7 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.hansung.anroidproject.model.Store;
+import com.example.hansung.anroidproject.model.Shop;
 
 import java.util.List;
 
@@ -26,7 +26,7 @@ import java.util.List;
 public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder> {
 
     private Context mContext;
-    private List<Store> storeList;
+    private List<Shop> shopList;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView address, storename, name; //주소, 가게이름, 이름
@@ -45,9 +45,9 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder
     }
 
 
-    public StoreAdapter(Context mContext, List<Store> storeList) {
+    public StoreAdapter(Context mContext, List<Shop> shopList) {
         this.mContext = mContext;
-        this.storeList = storeList;
+        this.shopList = shopList;
     }
 
     @Override
@@ -60,23 +60,23 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
-        Store store = storeList.get(position);
-        holder.address.setText(store.getAddress());
-        holder.storename.setText(store.getStoreName());
-        holder.name.setText(store.getName());
+        Shop shop = shopList.get(position);
+        holder.address.setText(shop.getLocation());
+        holder.storename.setText(shop.getName());
+        holder.name.setText(shop.getName());
 
         // loading album cover using Glide library
-        Glide.with(mContext).load(store.getStoreImage()).into(holder.storeimage);
+        Glide.with(mContext).load(shop.getImagePath()).into(holder.storeimage);
 
         holder.storeimage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(mContext,DetailStore.class);
-                intent.putExtra("storeimage",Integer.toString(storeList.get(position).getStoreImage()));
-                //intent.putExtra("storeimage",storeList.get(position).getStoreImage());
-                intent.putExtra("address",storeList.get(position).getAddress());
-                intent.putExtra("storename",storeList.get(position).getStoreName());
-                intent.putExtra("name",storeList.get(position).getName());
+                intent.putExtra("shopimage",Integer.toString(shopList.get(position).getImagePath()));
+                //intent.putExtra("storeimage",shopList.get(position).getStoreImage());
+                intent.putExtra("address", shopList.get(position).getLocation());
+                intent.putExtra("shopname", shopList.get(position).getName());
+                intent.putExtra("name", shopList.get(position).getName());
                 mContext.startActivity(intent);
             }
         });
@@ -119,6 +119,6 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder
 
     @Override
     public int getItemCount() {
-        return storeList.size();
+        return shopList.size();
     }
 }
