@@ -223,6 +223,17 @@ public class Fragment1 extends Fragment {
                     startActivity(intent);
                 }
             });
+
+            /* hotfix-fragment1 브랜치 작업.
+             * Fragment1 에서 이미지 클릭시 DetailStore 액티비티 이동이 안되서 따로 뺌 */
+            ((CustomViewHolder) holder).imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(view.getContext(), DetailStore.class);
+                    intent.putExtra("destinationUid", userModels.get(position).getUid());
+                    startActivity(intent);
+                }
+            });
         }
 
         @Override
@@ -240,7 +251,6 @@ public class Fragment1 extends Fragment {
                 imageView = (ImageView) view.findViewById(R.id.storeimage); //이미지
                 storename = (TextView) view.findViewById(R.id.storename); // 가게 이름
                 name = (TextView) view.findViewById(R.id.name);  //스타일 리스트 이름
-
             }
         }
     }
