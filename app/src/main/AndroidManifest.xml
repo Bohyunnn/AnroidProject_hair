@@ -57,8 +57,9 @@
             android:name=".DetailStorePOP"
             android:theme="@android:style/Theme.Dialog" />
         <activity android:name=".DetailStorePOP_location" />
-        <activity android:name=".DetailStorePOP_Book"
-            android:theme="@android:style/Theme.Dialog"/>
+        <activity
+            android:name=".DetailStorePOP_Book"
+            android:theme="@android:style/Theme.Dialog" />
     </application>
 
 </manifest>
