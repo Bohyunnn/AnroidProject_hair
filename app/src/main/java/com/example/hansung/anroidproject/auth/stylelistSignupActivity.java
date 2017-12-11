@@ -53,8 +53,8 @@ public class stylelistSignupActivity extends AppCompatActivity {
         email = (EditText) findViewById(R.id.signupActivity_edittext_email);
         name = (EditText) findViewById(R.id.signupActivity_edittext_name);
         password = (EditText) findViewById(R.id.signupActivity_edittext_password);
-        shopname=(EditText)findViewById(R.id.signupActivity_edittext_shopname);
-        address=(EditText)findViewById(R.id.signupActivity_edittext_address);
+        shopname = (EditText) findViewById(R.id.signupActivity_edittext_shopname);
+        address = (EditText) findViewById(R.id.signupActivity_edittext_address);
 
         signup = (Button) findViewById(R.id.signupActivity_button_signup);
 
@@ -63,7 +63,7 @@ public class stylelistSignupActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if (email.getText().toString() == null || name.getText().toString() == null || password.getText().toString() == null || imageUri == null || address==null || shopname==null) {
+                if (email.getText().toString() == null || name.getText().toString() == null || password.getText().toString() == null || imageUri == null || address == null || shopname == null) {
                     return;
                 }
 
@@ -78,7 +78,6 @@ public class stylelistSignupActivity extends AppCompatActivity {
                                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                                         @SuppressWarnings("VisibleForTests")
                                         String imageUrl = task.getResult().getDownloadUrl().toString();
-                                        String imageUrl2 = task.getResult().getDownloadUrl().toString();
 
                                         Stylist stylistModel = new Stylist();
                                         stylistModel.setStylistEmail(email.getText().toString());

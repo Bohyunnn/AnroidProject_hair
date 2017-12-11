@@ -183,15 +183,17 @@ public class Fragment2 extends Fragment implements OnMapReadyCallback {
                     //MyFiles filename = (MyFiles) fileSnapshot.getValue(MyFiles.class);
                     //하위키들의 value를 어떻게 가져오느냐???
                     String str = fileSnapshot.child("stylistAddress").getValue(String.class);
+                    String str2 = fileSnapshot.child("shopName").getValue(String.class);
 
                     MarkerOptions makerOptions = new MarkerOptions();
-                    findGeoPoint(getContext(),str);
+                    findGeoPoint(getContext(), str);
 
                     makerOptions
-                            .position(new LatLng(lat,lon))
+                            .position(new LatLng(lat, lon))
                             .icon(BitmapDescriptorFactory.defaultMarker(200f))
-                            .title("원하는 위치(위도, 경도)에 마커를 표시했습니다.")
-                            .snippet("제목 아래 추가 텍스트");
+                            .title("[ " + str + " ]")
+                            .snippet(str2);
+
                     // 마커를 생성한다.
                     map.addMarker(makerOptions);
 
@@ -209,7 +211,6 @@ public class Fragment2 extends Fragment implements OnMapReadyCallback {
 
             }
         });
-
 
 
 //        //findGeoPoint(maps);
