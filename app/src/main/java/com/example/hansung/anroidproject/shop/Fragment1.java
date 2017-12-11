@@ -1,5 +1,7 @@
 package com.example.hansung.anroidproject.shop;
 
+import android.app.ActivityOptions;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Rect;
 import android.os.Bundle;
@@ -15,10 +17,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.hansung.anroidproject.R;
 import com.example.hansung.anroidproject.deprecated.model.Store;
+import com.example.hansung.anroidproject.model.Stylist;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,11 +38,8 @@ import java.util.List;
   HomeActivity.java에서 1번째) 스타일 탭
  */
 public class Fragment1 extends Fragment {
+    private View view;
 
-    private StoreAdapter adapter;
-    private List<Store> storeList;
-    private ViewGroup rootView;
-    private RecyclerView recyclerView;
     public static final String TITLE = "스타일";
 
     public static Fragment1 newInstance() {
@@ -39,43 +47,37 @@ public class Fragment1 extends Fragment {
         return new Fragment1();
     }
 
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        rootView = (ViewGroup) inflater.inflate(R.layout.activity_fragment1, container, false);
-
+        view = inflater.inflate(R.layout.activity_fragment1, container, false);
         initCollapsingToolbar();
 
-        recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
-
-        storeList = new ArrayList<>();
-        adapter = new StoreAdapter(getContext(), storeList);
-
-        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getContext(), 2);
-        recyclerView.setLayoutManager(mLayoutManager);
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
         recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(adapter);
+        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(inflater.getContext(), 2);
+        recyclerView.setLayoutManager(mLayoutManager);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(inflater.getContext()));
 
-        prepareAlbums();
+        recyclerView.setAdapter(new PeopleFragmentRecyclerViewAdapter());
 
         try {
-            Glide.with(this).load(R.drawable.hairstylemain).into((ImageView) rootView.findViewById(R.id.backdrop));
+            Glide.with(this).load(R.drawable.hairstylemain).into((ImageView) view.findViewById(R.id.backdrop));
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return rootView;
+
+
+        return view;
     }
 
-    /**
-     * Initializing collapsing toolbar
-     * Will show and hide the toolbar title on scroll
-     */
+
     private void initCollapsingToolbar() {
         final CollapsingToolbarLayout collapsingToolbar =
-                (CollapsingToolbarLayout) rootView.findViewById(R.id.collapsing_toolbar);
+                (CollapsingToolbarLayout) view.findViewById(R.id.collapsing_toolbar);
         collapsingToolbar.setTitle(" ");
-        AppBarLayout appBarLayout = (AppBarLayout) rootView.findViewById(R.id.appbar);
+        AppBarLayout appBarLayout = (AppBarLayout) view.findViewById(R.id.appbar);
         appBarLayout.setExpanded(true);
 
         // hiding & showing the title when toolbar expanded & collapsed
@@ -99,42 +101,6 @@ public class Fragment1 extends Fragment {
         });
     }
 
-    /**
-     * Adding few albums for testing
-     */
-    private void prepareAlbums() {
-        int[] covers = new int[]{
-                R.drawable.hairsample1,
-                R.drawable.hairsample2,
-                R.drawable.hairsample3,
-                R.drawable.hairsample4,
-                R.drawable.hairsample5,
-                android.R.mipmap.sym_def_app_icon,
-                android.R.mipmap.sym_def_app_icon,
-                android.R.mipmap.sym_def_app_icon,
-                android.R.mipmap.sym_def_app_icon,
-                android.R.mipmap.sym_def_app_icon,
-                android.R.mipmap.sym_def_app_icon
-        };
-
-//        Store a = new Store("서울특별시 마포구 신수동 91", covers[0], "승찬이의샵", "백승찬");
-//        storeList.add(a);
-//
-//        a = new Store("서울시 은평구 응암동 174", covers[1], "보현이의샵", "김보현");
-//        storeList.add(a);
-//
-//        a = new Store("서울특별시 성북구 삼선동 삼선교로16길 116", covers[2], "준영이의샵", "허준영");
-//        storeList.add(a);
-//
-//        a = new Store("서울특별시 서대문구 홍제1동 통일로 405", covers[3], "춘향이의샵", "춘향이");
-//        storeList.add(a);
-//
-//        a = new Store("서울특별시 서초구 서초동 1685-8", covers[4], "길동이의샵", "홍길동");
-//        storeList.add(a);
-
-
-        adapter.notifyDataSetChanged();
-    }
 
     /**
      * RecyclerView item decoration - give equal margin around grid item
@@ -182,5 +148,101 @@ public class Fragment1 extends Fragment {
         return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
     }
 
+
+    class PeopleFragmentRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+
+        List<Stylist> userModels;
+
+        public PeopleFragmentRecyclerViewAdapter() {
+            userModels = new ArrayList<>();
+            final String myUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+            FirebaseDatabase.getInstance().getReference().child("stylist").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    userModels.clear();
+
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+
+
+                        Stylist userModel = snapshot.getValue(Stylist.class);
+
+                        if (userModel.getUid().equals(myUid)) {
+                            continue;
+                        }
+                        userModels.add(userModel);
+                    }
+                    notifyDataSetChanged();
+
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
+
+        }
+
+        @Override
+        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.store_card, parent, false);
+
+
+            return new CustomViewHolder(view);
+        }
+
+        @Override
+        public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
+
+
+            Glide.with
+                    (holder.itemView.getContext())
+                    .load(userModels.get(position).getProfileImageUrl())
+                    .apply(new RequestOptions().circleCrop())
+                    .into(((CustomViewHolder) holder).imageView);
+            ((CustomViewHolder) holder).textView.setText(userModels.get(position).getStylistName());
+            ((CustomViewHolder) holder).address.setText(userModels.get(position).getStylistAddress());
+            ((CustomViewHolder) holder).storename.setText(userModels.get(position).getShopName());
+            ((CustomViewHolder) holder).name.setText(userModels.get(position).getStylistName());
+
+
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //                Intent intent = new Intent(view.getContext(), MessageActivity.class);
+//                intent.putExtra("destinationUid", userModels.get(position).uid);
+//                ActivityOptions activityOptions = null;
+//                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
+//                    activityOptions = ActivityOptions.makeCustomAnimation(view.getContext(), R.anim.fromright, R.anim.toleft);
+//                    startActivity(intent, activityOptions.toBundle());
+//                }
+
+                    Toast.makeText(view.getContext(), "눌러짐", Toast.LENGTH_SHORT).show();
+
+                }
+            });
+        }
+
+        @Override
+        public int getItemCount() {
+            return userModels.size();
+        }
+
+        private class CustomViewHolder extends RecyclerView.ViewHolder {
+            public ImageView imageView;
+            public TextView textView, address, storename, name;
+
+            public CustomViewHolder(View view) {
+                super(view);
+                address = (TextView) view.findViewById(R.id.address); //주소
+                imageView = (ImageView) view.findViewById(R.id.storeimage); //이미지
+                textView = (TextView) view.findViewById(R.id.stylistId); //아이디
+                storename = (TextView) view.findViewById(R.id.storename);
+                name = (TextView) view.findViewById(R.id.name);
+
+            }
+        }
+    }
 
 }

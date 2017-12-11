@@ -1,6 +1,7 @@
 package com.example.hansung.anroidproject.shop;
 
 
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.PopupMenu;
@@ -18,109 +19,112 @@ import com.bumptech.glide.Glide;
 import com.example.hansung.anroidproject.R;
 import com.example.hansung.anroidproject.deprecated.model.Store;
 import com.example.hansung.anroidproject.detailShop.DetailStore;
+import com.example.hansung.anroidproject.model.Stylist;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import com.bumptech.glide.request.RequestOptions;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by kimsungmin on 2017-11-03.
  */
 
-public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder> {
+public class StoreAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  {
+    List<Stylist> StylistModels;
 
-    private Context mContext;
-    private List<Store> storeList;
-
-    public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView address, storename, name; //주소, 가게이름, 이름
-        public ImageView storeimage;
-        //, overflow; //가게 이미지, 버튼
-
-        public MyViewHolder(View view) {
-            super(view);
-            address = (TextView) view.findViewById(R.id.address);
-            storename = (TextView) view.findViewById(R.id.storename);
-            name = (TextView) view.findViewById(R.id.name);
-
-            storeimage = (ImageView) view.findViewById(R.id.storeimage);
-          //  overflow = (ImageView) view.findViewById(R.id.overflow);
-        }
-    }
-
-
-    public StoreAdapter(Context mContext, List<Store> storeList) {
-        this.mContext = mContext;
-        this.storeList = storeList;
-    }
-
-    @Override
-    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.store_card, parent, false);
-
-        return new MyViewHolder(itemView);
-    }
-
-    @Override
-    public void onBindViewHolder(final MyViewHolder holder, final int position) {
-        Store store = storeList.get(position);
-        holder.address.setText(store.getAddress());
-        holder.storename.setText(store.getStoreName());
-        holder.name.setText(store.getName());
-
-        // loading album cover using Glide library
-        Glide.with(mContext).load(store.getStoreImage()).into(holder.storeimage);
-
-        holder.storeimage.setOnClickListener(new View.OnClickListener() {
+    public StoreAdapter() {
+        StylistModels = new ArrayList<>();
+        final String myUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        FirebaseDatabase.getInstance().getReference().child("stylist").addValueEventListener(new ValueEventListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(mContext,DetailStore.class);
-                intent.putExtra("storeimage",Integer.toString(storeList.get(position).getStoreImage()));
-                //intent.putExtra("storeimage",storeList.get(position).getStoreImage());
-                intent.putExtra("address",storeList.get(position).getAddress());
-                intent.putExtra("storename",storeList.get(position).getStoreName());
-                intent.putExtra("name",storeList.get(position).getName());
-                mContext.startActivity(intent);
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                StylistModels.clear();
+
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+
+
+                    Stylist StylistModel = snapshot.getValue(Stylist.class);
+
+                    if (StylistModel.getUid().equals(myUid)) {
+                        continue;
+                    }
+                    StylistModels.add(StylistModel);
+                }
+                notifyDataSetChanged();
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+    }
+
+    @Override
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.store_card, parent, false);
+
+
+        return new CustomViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
+
+
+        Glide.with
+                (holder.itemView.getContext())
+                .load(StylistModels.get(position).getProfileImageUrl())
+                .apply(new RequestOptions().circleCrop())
+                .into(((CustomViewHolder) holder).imageView);
+        ((CustomViewHolder) holder).textView.setText(StylistModels.get(position).getStylistName());
+        ((CustomViewHolder) holder).address.setText(StylistModels.get(position).getStylistAddress());
+        ((CustomViewHolder) holder).storename.setText(StylistModels.get(position).getShopName());
+        ((CustomViewHolder) holder).name.setText(StylistModels.get(position).getStylistName());
+
+
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                Intent intent = new Intent(view.getContext(), MessageActivity.class);
+//                intent.putExtra("destinationUid", userModels.get(position).uid);
+//                ActivityOptions activityOptions = null;
+//                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
+//                    activityOptions = ActivityOptions.makeCustomAnimation(view.getContext(), R.anim.fromright, R.anim.toleft);
+//                    startActivity(intent, activityOptions.toBundle());
+//                }
+
+                    Toast.makeText(view.getContext(),"눌러짐",Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    /**
-     * Showing popup menu when tapping on 3 dots
-     */
-    private void showPopupMenu(View view) {
-        // inflate menu
-        PopupMenu popup = new PopupMenu(mContext, view);
-        MenuInflater inflater = popup.getMenuInflater();
-        inflater.inflate(R.menu.menu_store, popup.getMenu());
-        popup.setOnMenuItemClickListener(new MyMenuItemClickListener());
-        popup.show();
-    }
-
-    /**
-     * Click listener for popup menu items
-     */
-    class MyMenuItemClickListener implements PopupMenu.OnMenuItemClickListener {
-
-        public MyMenuItemClickListener() {
-        }
-
-        @Override
-        public boolean onMenuItemClick(MenuItem menuItem) {
-            switch (menuItem.getItemId()) {
-                case R.id.action_add_favourite:
-                    Toast.makeText(mContext, "Add to favourite", Toast.LENGTH_SHORT).show();
-                    return true;
-                case R.id.action_play_next:
-                    Toast.makeText(mContext, "Play next", Toast.LENGTH_SHORT).show();
-                    return true;
-                default:
-            }
-            return false;
-        }
-    }
-
     @Override
     public int getItemCount() {
-        return storeList.size();
+        return StylistModels.size();
+    }
+
+    private class CustomViewHolder extends RecyclerView.ViewHolder {
+        public ImageView imageView;
+        public TextView textView, address, storename, name;
+
+        public CustomViewHolder(View view) {
+            super(view);
+            address = (TextView) view.findViewById(R.id.address); //주소
+            imageView = (ImageView) view.findViewById(R.id.storeimage); //이미지
+            textView = (TextView) view.findViewById(R.id.stylistId); //아이디
+            storename = (TextView) view.findViewById(R.id.storename);
+            name = (TextView) view.findViewById(R.id.name);
+        }
     }
 }

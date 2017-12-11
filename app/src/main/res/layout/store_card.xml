@@ -93,6 +93,19 @@
                                 android:textStyle="bold" />
 
                             <TextView
+                                android:id="@+id/stylistId"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/storename"
+                                android:layout_weight="1"
+                                android:paddingBottom="@dimen/songs_count_padding_bottom"
+                                android:paddingLeft="@dimen/album_title_padding"
+                                android:paddingRight="@dimen/album_title_padding"
+                                android:paddingTop="5dp"
+                                android:text="ID"
+                                android:textSize="@dimen/songs_count" />
+
+                            <TextView
                                 android:id="@+id/name"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
