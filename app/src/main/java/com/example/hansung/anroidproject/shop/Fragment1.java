@@ -161,9 +161,9 @@ public class Fragment1 extends Fragment {
             userModels = new ArrayList<>();
             final String myUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
             if(myUid == null)
-                Log.d(TAG, "myUid가 Null입니다.");
+                Log.d(TAG, "받아옴! myUid가 Null입니다.");
             else
-                Log.d(TAG, "myUid가 Null이 아닙니다.");
+                Log.d(TAG, "받아옴! myUid가 Null이 아닙니다.");
 
             FirebaseDatabase.getInstance().getReference().child("stylist").addValueEventListener(new ValueEventListener() {
                 @Override
@@ -172,8 +172,9 @@ public class Fragment1 extends Fragment {
 
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
 
-
                         Stylist userModel = snapshot.getValue(Stylist.class);
+//                        String uid = snapshot.child("uid").getValue(String.class);
+//                        userModel.setUid(uid);
                         if(userModel == null)
                             Log.d(TAG, "userModel 이 Null입니다.");
                         else

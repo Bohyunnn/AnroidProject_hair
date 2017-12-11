@@ -47,7 +47,7 @@ public class DetailStore extends AppCompatActivity {
 
     private Button locationSearch; //지도 검색
     private String storename,location;
-    
+
     private Button chattingButton;
 
     private String destinationUID; // 상대방 UID
@@ -114,7 +114,7 @@ public class DetailStore extends AppCompatActivity {
 
         /* 채팅 문의 버튼 + 토큰 받아오는 메서드 */
         chattingButton = (Button) findViewById(R.id.chattingButton);
-        passPushTokenToServer();
+//        passPushTokenToServer();
     }
 
     //ActionBar's Back Button
