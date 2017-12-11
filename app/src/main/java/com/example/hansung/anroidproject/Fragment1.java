@@ -113,20 +113,20 @@ public class Fragment1 extends Fragment {
                 android.R.mipmap.sym_def_app_icon
         };
 
-        Shop a = new Shop("서울특별시 마포구 신수동 91", covers[0], "승찬이의샵", "백승찬");
-        shopList.add(a);
-
-        a = new Shop("서울시 은평구 응암동 174", covers[1], "보현이의샵", "김보현");
-        shopList.add(a);
-
-        a = new Shop("서울특별시 성북구 삼선동 삼선교로16길 116", covers[2], "준영이의샵", "허준영");
-        shopList.add(a);
-
-        a = new Shop("서울특별시 서대문구 홍제1동 통일로 405", covers[3], "춘향이의샵", "춘향이");
-        shopList.add(a);
-
-        a = new Shop("서울특별시 서초구 서초동 1685-8", covers[4], "길동이의샵", "홍길동");
-        shopList.add(a);
+//        Shop a = new Shop("서울특별시 마포구 신수동 91", covers[0], "승찬이의샵", "백승찬");
+//        shopList.add(a);
+//
+//        a = new Shop("서울시 은평구 응암동 174", covers[1], "보현이의샵", "김보현");
+//        shopList.add(a);
+//
+//        a = new Shop("서울특별시 성북구 삼선동 삼선교로16길 116", covers[2], "준영이의샵", "허준영");
+//        shopList.add(a);
+//
+//        a = new Shop("서울특별시 서대문구 홍제1동 통일로 405", covers[3], "춘향이의샵", "춘향이");
+//        shopList.add(a);
+//
+//        a = new Shop("서울특별시 서초구 서초동 1685-8", covers[4], "길동이의샵", "홍길동");
+//        shopList.add(a);
 
 
         adapter.notifyDataSetChanged();

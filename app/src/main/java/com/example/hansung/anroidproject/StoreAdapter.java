@@ -72,7 +72,7 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(mContext,DetailStore.class);
-                intent.putExtra("shopimage",Integer.toString(shopList.get(position).getImagePath()));
+//                intent.putExtra("shopimage",Integer.toString(shopList.get(position).getImagePath()));
                 //intent.putExtra("storeimage",shopList.get(position).getStoreImage());
                 intent.putExtra("address", shopList.get(position).getLocation());
                 intent.putExtra("shopname", shopList.get(position).getName());
