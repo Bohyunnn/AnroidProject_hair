@@ -4,7 +4,8 @@
     <modules>
       <module fileurl="file://C:\Users\USER\Desktop\high-level-mobile-programming\bohyun-rookies171206\AndroidProject.iml" filepath="C:\Users\USER\Desktop\high-level-mobile-programming\bohyun-rookies171206\AndroidProject.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/bohyun-rookies171206.iml" filepath="$PROJECT_DIR$/bohyun-rookies171206.iml" />
+      <module fileurl="file://C:\Users\USER\Desktop\high-level-mobile-programming\bohyun-rookies171210\bohyun-rookies171206.iml" filepath="C:\Users\USER\Desktop\high-level-mobile-programming\bohyun-rookies171210\bohyun-rookies171206.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bohyun-rookies171210.iml" filepath="$PROJECT_DIR$/bohyun-rookies171210.iml" />
     </modules>
   </component>
 </project>

@@ -11,9 +11,13 @@ public class Customer {
 
     private String email;
 
-    private String username; // 실명?? 일단 google 또는 facebook의 @앞 아이디
+    private String name; // 이름? 일단 google 또는 facebook의 이메일계정 @앞 아이디
 
     private String profileImagePath;
+
+    private String uid; // 보현이 파이어베이스 채팅
+
+    private String pushToken; // 보현이 파이어베이스 채팅
 
 //    private String principal; // Google / Facebook 키. Firebase에 필요한지 모르겠음.일단보류
 
@@ -43,12 +47,12 @@ public class Customer {
         this.email = email;
     }
 
-    public String getUsername() {
-        return username;
+    public String getName() {
+        return name;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getProfileImagePath() {
@@ -57,5 +61,21 @@ public class Customer {
 
     public void setProfileImagePath(String profileImagePath) {
         this.profileImagePath = profileImagePath;
+    }
+
+    public String getUid(){
+        return this.uid;
+    }
+
+    public void setUid(String uid){
+        this.uid = uid;
+    }
+
+    public String getPushToken(){
+        return this.pushToken;
+    }
+
+    public void setPushToken(String pushToken){
+        this.pushToken = pushToken;
     }
 }
