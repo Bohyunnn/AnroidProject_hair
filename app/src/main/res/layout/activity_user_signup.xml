@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context="com.example.hansung.anroidproject.userSignupActivity">
+    tools:context="com.example.hansung.anroidproject.auth.userSignupActivity">
 
     <ImageView
         android:id="@+id/signupActivity_imageview_profile"

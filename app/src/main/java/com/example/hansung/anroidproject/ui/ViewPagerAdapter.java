@@ -1,4 +1,4 @@
-package com.example.hansung.anroidproject;
+package com.example.hansung.anroidproject.ui;
 
 /**
  * Created by kimsungmin on 2017-11-02.
@@ -7,6 +7,10 @@ package com.example.hansung.anroidproject;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+
+import com.example.hansung.anroidproject.shop.Fragment1;
+import com.example.hansung.anroidproject.shop.Fragment2;
+import com.example.hansung.anroidproject.book.Fragment3;
 
 public class ViewPagerAdapter  extends FragmentStatePagerAdapter {
 

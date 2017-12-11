@@ -1,8 +1,7 @@
-package com.example.hansung.anroidproject;
+package com.example.hansung.anroidproject.detailShop;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -10,6 +9,11 @@ import android.view.Window;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.hansung.anroidproject.R;
+
+/*
+    예약 버튼 예, 아니오
+ */
 public class DetailStorePOP extends Activity {
 
     private TextView ProductName;

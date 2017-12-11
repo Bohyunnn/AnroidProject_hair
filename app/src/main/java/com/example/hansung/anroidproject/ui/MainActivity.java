@@ -1,10 +1,16 @@
-package com.example.hansung.anroidproject;
+package com.example.hansung.anroidproject.ui;
 
 import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.example.hansung.anroidproject.R;
+import com.example.hansung.anroidproject.auth.LoginActivity;
+
+/*
+    로딩화면
+ */
 public class MainActivity extends AppCompatActivity {
 
     @Override

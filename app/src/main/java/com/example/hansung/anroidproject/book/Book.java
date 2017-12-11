@@ -1,6 +1,6 @@
-package com.example.hansung.anroidproject;
+package com.example.hansung.anroidproject.book;
 
-import java.util.Date;
+import com.example.hansung.anroidproject.deprecated.model.Store;
 
 /**
  * Created by kimsungmin on 2017-12-06.

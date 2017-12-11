@@ -1,10 +1,8 @@
-package com.example.hansung.anroidproject;
+package com.example.hansung.anroidproject.detailShop;
 
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Rect;
-import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,14 +11,14 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.bumptech.glide.Glide;
+import com.example.hansung.anroidproject.R;
+import com.example.hansung.anroidproject.deprecated.model.Product;
 
 import java.util.ArrayList;
 import java.util.List;

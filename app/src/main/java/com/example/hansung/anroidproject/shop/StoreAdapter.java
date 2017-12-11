@@ -1,4 +1,4 @@
-package com.example.hansung.anroidproject;
+package com.example.hansung.anroidproject.shop;
 
 
 import android.content.Context;
@@ -15,6 +15,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.hansung.anroidproject.R;
+import com.example.hansung.anroidproject.deprecated.model.Store;
+import com.example.hansung.anroidproject.detailShop.DetailStore;
 
 import java.util.List;
 

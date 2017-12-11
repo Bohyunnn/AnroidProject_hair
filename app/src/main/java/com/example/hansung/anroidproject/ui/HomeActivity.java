@@ -1,4 +1,4 @@
-package com.example.hansung.anroidproject;
+package com.example.hansung.anroidproject.ui;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -15,10 +15,13 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.example.hansung.anroidproject.R;
+import com.example.hansung.anroidproject.auth.LoginActivity;
+import com.example.hansung.anroidproject.navi.ServiceContact;
+import com.example.hansung.anroidproject.navi.ServiceIntro;
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 

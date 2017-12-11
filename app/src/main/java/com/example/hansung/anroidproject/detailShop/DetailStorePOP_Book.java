@@ -1,10 +1,9 @@
-package com.example.hansung.anroidproject;
+package com.example.hansung.anroidproject.detailShop;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -14,9 +13,15 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.example.hansung.anroidproject.ui.HomeActivity;
+import com.example.hansung.anroidproject.R;
+
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+/*
+    예약 하기 선택했을 때 시간 , 날짜 고르기
+ */
 public class DetailStorePOP_Book extends Activity {
 
     private int mYear, mMonth, mDay, mHour, mMinute;
