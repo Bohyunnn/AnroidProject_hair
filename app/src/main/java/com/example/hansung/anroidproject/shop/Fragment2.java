@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.hansung.anroidproject.R;
+import com.example.hansung.anroidproject.model.Stylist;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -24,9 +25,16 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.jaredrummler.materialspinner.MaterialSpinner;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -42,6 +50,7 @@ public class Fragment2 extends Fragment implements OnMapReadyCallback {
     private LatLng Storelocation;
     private LatLng Searchlocation;
     private LatLng Basiclocation;
+    private List<String> maps;
 
     private static double lat = 37.554698, lon = 126.970563; //'서울역'의 위도, 경도
 
@@ -163,21 +172,67 @@ public class Fragment2 extends Fragment implements OnMapReadyCallback {
         //.title  (마커 클릭시 정보 창에 표시되는 문자열)
         //.spinnet (제목 아래 추가 텍스트)
         //.Icon  (아이콘)
-        MarkerOptions makerOptions = new MarkerOptions();
-        makerOptions
-                .position(Storelocation)
-                .icon(BitmapDescriptorFactory.defaultMarker(200f))
-                .title("원하는 위치(위도, 경도)에 마커를 표시했습니다.")
-                .snippet("제목 아래 추가 텍스트");
+        maps = new ArrayList<String>();
 
-        // 마커를 생성한다.
-        map.addMarker(makerOptions);
+        FirebaseDatabase.getInstance().getReference().child("stylist").addValueEventListener(new ValueEventListener() {
+            @Override
 
-        //정보창 클릭 리스너
-        map.setOnInfoWindowClickListener(infoWindowClickListener);
+            public void onDataChange(DataSnapshot dataSnapshot) {
 
-        //마커 클릭 리스너
-        map.setOnMarkerClickListener(markerClickListener);
+                for (DataSnapshot fileSnapshot : dataSnapshot.getChildren()) {
+                    //MyFiles filename = (MyFiles) fileSnapshot.getValue(MyFiles.class);
+                    //하위키들의 value를 어떻게 가져오느냐???
+                    String str = fileSnapshot.child("stylistAddress").getValue(String.class);
+
+                    MarkerOptions makerOptions = new MarkerOptions();
+                    findGeoPoint(getContext(),str);
+
+                    makerOptions
+                            .position(new LatLng(lat,lon))
+                            .icon(BitmapDescriptorFactory.defaultMarker(200f))
+                            .title("원하는 위치(위도, 경도)에 마커를 표시했습니다.")
+                            .snippet("제목 아래 추가 텍스트");
+                    // 마커를 생성한다.
+                    map.addMarker(makerOptions);
+
+                    //정보창 클릭 리스너
+                    map.setOnInfoWindowClickListener(infoWindowClickListener);
+
+                    //마커 클릭 리스너
+                    map.setOnMarkerClickListener(markerClickListener);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+
+//        //findGeoPoint(maps);
+//        for (String str : maps) {
+//            MarkerOptions makerOptions = new MarkerOptions();
+//            findGeoPoint(getContext(),str);
+//
+//            makerOptions
+//                    .position(new LatLng(lat,lon))
+//                    .icon(BitmapDescriptorFactory.defaultMarker(200f))
+//                    .title("원하는 위치(위도, 경도)에 마커를 표시했습니다.")
+//                    .snippet("제목 아래 추가 텍스트");
+//            // 마커를 생성한다.
+//            map.addMarker(makerOptions);
+//
+//            //정보창 클릭 리스너
+//            map.setOnInfoWindowClickListener(infoWindowClickListener);
+//
+//            //마커 클릭 리스너
+//            map.setOnMarkerClickListener(markerClickListener);
+//
+//        }
+
     }
 
     //정보창 클릭 리스너

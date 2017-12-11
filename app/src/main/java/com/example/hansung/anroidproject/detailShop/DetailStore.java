@@ -47,9 +47,12 @@ public class DetailStore extends AppCompatActivity {
 
     private Button locationSearch; //지도 검색
     private String storename,location;
+    
     private Button chattingButton;
 
     private String destinationUID; // 상대방 UID
+
+    private  Stylist stylist;
 
 
     @Override
@@ -67,7 +70,7 @@ public class DetailStore extends AppCompatActivity {
         FirebaseDatabase.getInstance().getReference().child("stylist").child(destinationUID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Stylist stylist=dataSnapshot.getValue(Stylist.class);
+                stylist=dataSnapshot.getValue(Stylist.class);
 
                 imageView = (ImageView) findViewById(R.id.imageView);
               //  Glide.with(DetailStore.this).load(stylist.getProfileImageUrl()).into(imageView);
@@ -143,10 +146,10 @@ public class DetailStore extends AppCompatActivity {
 
     public void onLocationSearch(View view) {
         //지도 클릭시 지도 띄어줄 부분
-        Toast.makeText(this, location + " 지도를 보여줘!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, stylist.getStylistAddress() + " 지도를 보여줘!", Toast.LENGTH_SHORT).show();
         Intent intent2 = new Intent(this, DetailStorePOP_location.class);
-        intent2.putExtra("storename",storename);
-        intent2.putExtra("location", location);
+        intent2.putExtra("storename",stylist.getShopName());
+        intent2.putExtra("location", stylist.getStylistAddress());
         startActivity(intent2);
     }
 
