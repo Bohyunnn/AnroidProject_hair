@@ -1,4 +1,4 @@
-package com.example.hansung.anroidproject;
+package com.example.hansung.anroidproject.book;
 
 import android.content.res.Resources;
 import android.graphics.Rect;
@@ -13,11 +13,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.hansung.anroidproject.deprecated.model.Book;
+import com.example.hansung.anroidproject.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+  HomeActivity.java에서 3번째) 예약현황 탭
+ */
 public class Fragment3 extends Fragment {
 
   private BookAdapter bookAdapter;

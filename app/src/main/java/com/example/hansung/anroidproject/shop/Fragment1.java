@@ -1,4 +1,4 @@
-package com.example.hansung.anroidproject;
+package com.example.hansung.anroidproject.shop;
 
 import android.content.res.Resources;
 import android.graphics.Rect;
@@ -17,11 +17,15 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.example.hansung.anroidproject.R;
 import com.example.hansung.anroidproject.deprecated.model.Store;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+  HomeActivity.java에서 1번째) 스타일 탭
+ */
 public class Fragment1 extends Fragment {
 
     private StoreAdapter adapter;
@@ -113,20 +117,20 @@ public class Fragment1 extends Fragment {
                 android.R.mipmap.sym_def_app_icon
         };
 
-        Store a = new Store("서울특별시 마포구 신수동 91", covers[0], "승찬이의샵", "백승찬");
-        storeList.add(a);
-
-        a = new Store("서울시 은평구 응암동 174", covers[1], "보현이의샵", "김보현");
-        storeList.add(a);
-
-        a = new Store("서울특별시 성북구 삼선동 삼선교로16길 116", covers[2], "준영이의샵", "허준영");
-        storeList.add(a);
-
-        a = new Store("서울특별시 서대문구 홍제1동 통일로 405", covers[3], "춘향이의샵", "춘향이");
-        storeList.add(a);
-
-        a = new Store("서울특별시 서초구 서초동 1685-8", covers[4], "길동이의샵", "홍길동");
-        storeList.add(a);
+//        Store a = new Store("서울특별시 마포구 신수동 91", covers[0], "승찬이의샵", "백승찬");
+//        storeList.add(a);
+//
+//        a = new Store("서울시 은평구 응암동 174", covers[1], "보현이의샵", "김보현");
+//        storeList.add(a);
+//
+//        a = new Store("서울특별시 성북구 삼선동 삼선교로16길 116", covers[2], "준영이의샵", "허준영");
+//        storeList.add(a);
+//
+//        a = new Store("서울특별시 서대문구 홍제1동 통일로 405", covers[3], "춘향이의샵", "춘향이");
+//        storeList.add(a);
+//
+//        a = new Store("서울특별시 서초구 서초동 1685-8", covers[4], "길동이의샵", "홍길동");
+//        storeList.add(a);
 
 
         adapter.notifyDataSetChanged();

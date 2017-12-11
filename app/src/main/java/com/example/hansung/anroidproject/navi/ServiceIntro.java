@@ -1,7 +1,9 @@
-package com.example.hansung.anroidproject;
+package com.example.hansung.anroidproject.navi;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.hansung.anroidproject.R;
 
 public class ServiceIntro extends AppCompatActivity {
 

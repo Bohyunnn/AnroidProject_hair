@@ -11,14 +11,14 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity" />
+        <activity android:name=".auth.LoginActivity" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
@@ -44,24 +44,24 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".HomeActivity"
+            android:name=".ui.HomeActivity"
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Fragment1" />
-        <activity android:name=".Fragment2" />
-        <activity android:name=".Fragment3" />
-        <activity android:name=".DetailStore" />
-        <activity android:name=".ServiceIntro" />
-        <activity android:name=".ServiceContact" />
+        <activity android:name=".shop.Fragment1" />
+        <activity android:name=".shop.Fragment2" />
+        <activity android:name=".book.Fragment3" />
+        <activity android:name=".detailShop.DetailStore" />
+        <activity android:name=".navi.ServiceIntro" />
+        <activity android:name=".navi.ServiceContact" />
         <activity
-            android:name=".DetailStorePOP"
+            android:name=".detailShop.DetailStorePOP"
             android:theme="@android:style/Theme.Dialog" />
-        <activity android:name=".DetailStorePOP_location" />
+        <activity android:name=".detailShop.DetailStorePOP_location" />
         <activity
-            android:name=".DetailStorePOP_Book"
+            android:name=".detailShop.DetailStorePOP_Book"
             android:theme="@android:style/Theme.Dialog" />
-        <activity android:name=".stylelistSignupActivity" />
-        <activity android:name=".userSignupActivity"></activity>
+        <activity android:name=".auth.stylelistSignupActivity" />
+        <activity android:name=".auth.userSignupActivity"></activity>
     </application>
 
 </manifest>

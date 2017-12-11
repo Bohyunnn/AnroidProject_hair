@@ -1,4 +1,4 @@
-package com.example.hansung.anroidproject;
+package com.example.hansung.anroidproject.shop;
 
 import android.content.Context;
 import android.location.Address;
@@ -11,12 +11,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.hansung.anroidproject.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -28,9 +27,11 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.jaredrummler.materialspinner.MaterialSpinner;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
+/*
+  HomeActivity.java에서 2번째) 위치검색 탭
+ */
 public class Fragment2 extends Fragment implements OnMapReadyCallback {
     private ViewGroup rootView;
     private ArrayAdapter<CharSequence> adspin1, adspin2;

@@ -7,7 +7,7 @@
     android:background="@color/cardview_light_background"
     android:orientation="vertical"
     android:weightSum="1"
-    tools:context="com.example.hansung.anroidproject.LoginActivity">
+    tools:context="com.example.hansung.anroidproject.auth.LoginActivity">
 
 
     <TextView
