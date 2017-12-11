@@ -1,4 +1,4 @@
-package com.example.hansung.anroidproject;
+package com.example.hansung.anroidproject.deprecated.model;
 
 import java.util.List;
 

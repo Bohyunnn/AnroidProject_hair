@@ -1,6 +1,4 @@
-package com.example.hansung.anroidproject;
-
-import java.util.Date;
+package com.example.hansung.anroidproject.deprecated.model;
 
 /**
  * Created by kimsungmin on 2017-12-06.
