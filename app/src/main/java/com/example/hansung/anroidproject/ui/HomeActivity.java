@@ -16,6 +16,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.hansung.anroidproject.R;
@@ -28,8 +29,12 @@ import com.google.firebase.auth.FirebaseAuth;
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private TextView nameTextView;
-    private TextView emailTextView;
+    /* nav-header-home에 보여질 현자 사용자 이름, 이메일, 권한 */
+    private ImageView mHeaderProfileImage;
+    private TextView mHeaderName;
+    private TextView mHeaderEmail;
+    private TextView mHeaderAuthority;
+
     private FirebaseAuth auth; //아이디랑 비밀번호 받아옴(싱글톤 패턴으로)
 
     //툴바
@@ -79,12 +84,16 @@ public class HomeActivity extends AppCompatActivity
 
         //nav_header_home.xml 설정
         View view = navigationView.getHeaderView(0);
-        nameTextView = (TextView) view.findViewById(R.id.header_name_textView);
-        emailTextView = (TextView) view.findViewById(R.id.header_email_textView);
+        mHeaderProfileImage = (ImageView) view.findViewById(R.id.header_profile_imageView);
+        mHeaderName = (TextView) view.findViewById(R.id.header_name_textView);
+        mHeaderEmail = (TextView) view.findViewById(R.id.header_email_textView);
+        mHeaderAuthority = (TextView) view.findViewById(R.id.header_authority_textView);
 
         //auth에서 name과 email 받아옴.
-        nameTextView.setText(auth.getCurrentUser().getDisplayName());
-        emailTextView.setText(auth.getCurrentUser().getEmail());
+        mHeaderProfileImage.setImageURI(auth.getCurrentUser().getPhotoUrl());
+        mHeaderName.setText(auth.getCurrentUser().getDisplayName());
+        mHeaderEmail.setText(auth.getCurrentUser().getEmail());
+        mHeaderAuthority.setText(auth.getCurrentUser().getProviderId());
         //
 
 
