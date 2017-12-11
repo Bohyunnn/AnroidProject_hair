@@ -5,13 +5,19 @@ package com.example.hansung.anroidproject.model;
  */
 
 public class Customer {
+    /*
+    userEmail 사용자 리스트 아이디(이메일)
+    userName 사용자 리스트 이름
+    profileImageUrl 사용자 프로필 사진
+    //사용자 리스트 비밀번호
+     */
+
 
     /* Fields */
-    private int id;
 
-    private String email;
+    private String userEmail;
 
-    private String name; // 이름? 일단 google 또는 facebook의 이메일계정 @앞 아이디
+    private String userName; // 이름? 일단 google 또는 facebook의 이메일계정 @앞 아이디
 
     private String profileImagePath;
 
@@ -31,28 +37,21 @@ public class Customer {
     }
 
     /* Getters and seters */
-    public int getId() {
-        return id;
+
+    public String getUserEmail() {
+        return userEmail;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getProfileImagePath() {
@@ -63,19 +62,19 @@ public class Customer {
         this.profileImagePath = profileImagePath;
     }
 
-    public String getUid(){
-        return this.uid;
+    public String getUid() {
+        return uid;
     }
 
-    public void setUid(String uid){
+    public void setUid(String uid) {
         this.uid = uid;
     }
 
-    public String getPushToken(){
-        return this.pushToken;
+    public String getPushToken() {
+        return pushToken;
     }
 
-    public void setPushToken(String pushToken){
+    public void setPushToken(String pushToken) {
         this.pushToken = pushToken;
     }
 }

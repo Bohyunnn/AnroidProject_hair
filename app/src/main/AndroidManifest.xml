@@ -60,6 +60,8 @@
         <activity
             android:name=".DetailStorePOP_Book"
             android:theme="@android:style/Theme.Dialog" />
+        <activity android:name=".stylelistSignupActivity" />
+        <activity android:name=".userSignupActivity"></activity>
     </application>
 
 </manifest>
