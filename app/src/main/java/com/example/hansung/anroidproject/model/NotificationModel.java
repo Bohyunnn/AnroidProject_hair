@@ -7,7 +7,7 @@ package com.example.hansung.anroidproject.model;
 public class NotificationModel { // 보현이 파이어베이스 채팅
 
     /* Fields */
-    private String to;
+    public String to;
 
     public Notification notification = new Notification();
 

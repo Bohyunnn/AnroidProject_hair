@@ -18,6 +18,9 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.hansung.anroidproject.R;
+import com.example.hansung.anroidproject.model.ChatModel;
+import com.example.hansung.anroidproject.model.NotificationModel;
+import com.example.hansung.anroidproject.model.Stylist;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -27,6 +30,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.ValueEventListener;
+import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -34,6 +38,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class MessageActivity extends AppCompatActivity {
 
@@ -48,7 +60,7 @@ public class MessageActivity extends AppCompatActivity {
 
     private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm");
 
-    private UserModel destinationUserModel;
+    private Stylist destinationUserModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,7 +119,7 @@ public class MessageActivity extends AppCompatActivity {
         Gson gson = new Gson();
 
         NotificationModel notificationModel = new NotificationModel();
-        notificationModel.to = destinationUserModel.pushToken;
+        notificationModel.to = destinationUserModel.getPushToken();
         notificationModel.notification.title = "보낸이 아이디";
         notificationModel.notification.text = editText.getText().toString();
 
@@ -166,10 +178,10 @@ public class MessageActivity extends AppCompatActivity {
         public RecyclerViewAdapter() {
             comments = new ArrayList<>();
 
-            FirebaseDatabase.getInstance().getReference().child("users").child(destinatonUid).addListenerForSingleValueEvent(new ValueEventListener() {
+            FirebaseDatabase.getInstance().getReference().child("stylist").child(destinatonUid).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    destinationUserModel = dataSnapshot.getValue(UserModel.class);
+                    destinationUserModel = dataSnapshot.getValue(Stylist.class);
                     getMessageList();
 
                 }
@@ -235,10 +247,10 @@ public class MessageActivity extends AppCompatActivity {
             }else {
 
                 Glide.with(holder.itemView.getContext())
-                        .load(destinationUserModel.profileImageUrl)
+                        .load(destinationUserModel.getProfileImageUrl())
                         .apply(new RequestOptions().circleCrop())
                         .into(messageViewHolder.imageView_profile);
-                messageViewHolder.textview_name.setText(destinationUserModel.userName);
+                messageViewHolder.textview_name.setText(destinationUserModel.getStylistName());
                 messageViewHolder.linearLayout_destination.setVisibility(View.VISIBLE);
                 messageViewHolder.textView_message.setBackgroundResource(R.drawable.leftbubble);
                 messageViewHolder.textView_message.setText(comments.get(position).message);

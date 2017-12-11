@@ -100,7 +100,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:backgroundTint="@color/red_400"
-                                android:onClick="onLocationSearch"
+                                android:onClick="onClickChattingButton"
                                 android:text="1:1 문의"
                                 android:layout_weight="1"/>
 

@@ -18,6 +18,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.hansung.anroidproject.R;
+import com.example.hansung.anroidproject.model.ChatModel;
+import com.example.hansung.anroidproject.model.Stylist;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -106,13 +108,13 @@ public class ChatFragment extends android.app.Fragment {
             FirebaseDatabase.getInstance().getReference().child("users").child(destinationUid).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    UserModel userModel =  dataSnapshot.getValue(UserModel.class);
+                    Stylist userModel =  dataSnapshot.getValue(Stylist.class);
                     Glide.with(customViewHolder.itemView.getContext())
-                            .load(userModel.profileImageUrl)
+                            .load(userModel.getProfileImageUrl())
                             .apply(new RequestOptions().circleCrop())
                             .into(customViewHolder.imageView);
 
-                    customViewHolder.textView_title.setText(userModel.userName);
+                    customViewHolder.textView_title.setText(userModel.getStylistName());
 
                 }
 
