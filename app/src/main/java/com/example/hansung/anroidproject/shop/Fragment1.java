@@ -24,6 +24,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.hansung.anroidproject.R;
 import com.example.hansung.anroidproject.deprecated.model.Store;
+import com.example.hansung.anroidproject.detailShop.DetailStore;
 import com.example.hansung.anroidproject.model.Stylist;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -218,8 +219,8 @@ public class Fragment1 extends Fragment {
 //                    startActivity(intent, activityOptions.toBundle());
 //                }
 
-                    Toast.makeText(view.getContext(), "눌러짐", Toast.LENGTH_SHORT).show();
-
+                    Intent intent = new Intent(view.getContext(), DetailStore.class);
+                    startActivity(intent);
                 }
             });
         }

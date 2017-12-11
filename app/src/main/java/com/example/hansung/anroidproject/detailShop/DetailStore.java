@@ -52,15 +52,15 @@ public class DetailStore extends AppCompatActivity {
         textView1 = (TextView) findViewById(R.id.textView1);
         textView2 = (TextView) findViewById(R.id.textView2);
 
-        intent = getIntent();
-
-        storeimage = Integer.parseInt(intent.getStringExtra("storeimage"));
-//        imageView.setImageResource(storeimage);
-//        textView1.setText(intent.getStringExtra("name"));
-        storename=intent.getStringExtra("storename");
-        textView1.setText(storename);
-        location = intent.getStringExtra("address");
-        textView2.setText(location);
+//        intent = getIntent();
+//
+//        storeimage = Integer.parseInt(intent.getStringExtra("storeimage"));
+////        imageView.setImageResource(storeimage);
+////        textView1.setText(intent.getStringExtra("name"));
+//        storename=intent.getStringExtra("storename");
+//        textView1.setText(storename);
+//        location = intent.getStringExtra("address");
+//        textView2.setText(location);
 
         //
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
