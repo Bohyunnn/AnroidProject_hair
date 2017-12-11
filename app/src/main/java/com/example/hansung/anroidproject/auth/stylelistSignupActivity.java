@@ -84,7 +84,7 @@ public class stylelistSignupActivity extends AppCompatActivity {
                                         stylistModel.setStylistEmail(email.getText().toString());
                                         stylistModel.setStylistName(name.getText().toString());
                                         stylistModel.setStylistAddress(address.getText().toString());
-                                        stylistModel.setShopName(address.getText().toString());
+                                        stylistModel.setShopName(shopname.getText().toString());
                                         stylistModel.setProfileImageUrl(imageUrl);
                                         stylistModel.setUid(FirebaseAuth.getInstance().getCurrentUser().getUid());
 

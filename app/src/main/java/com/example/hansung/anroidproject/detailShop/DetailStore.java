@@ -2,7 +2,9 @@ package com.example.hansung.anroidproject.detailShop;
 
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
 import android.graphics.Rect;
+import android.provider.MediaStore;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,6 +21,11 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.hansung.anroidproject.R;
 import com.example.hansung.anroidproject.deprecated.model.Product;
+import com.example.hansung.anroidproject.model.Stylist;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,20 +54,30 @@ public class DetailStore extends AppCompatActivity {
         actionBar.setTitle("스타일");
 
 
-        imageView = (ImageView) findViewById(R.id.imageView);
-//        textView1 = (TextView) findViewById(R.id.textView1);
-        textView1 = (TextView) findViewById(R.id.textView1);
-        textView2 = (TextView) findViewById(R.id.textView2);
+        String uid=getIntent().getStringExtra("destinationUid");
 
-//        intent = getIntent();
-//
-//        storeimage = Integer.parseInt(intent.getStringExtra("storeimage"));
-////        imageView.setImageResource(storeimage);
-////        textView1.setText(intent.getStringExtra("name"));
-//        storename=intent.getStringExtra("storename");
-//        textView1.setText(storename);
-//        location = intent.getStringExtra("address");
-//        textView2.setText(location);
+        FirebaseDatabase.getInstance().getReference().child("stylist").child(uid).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Stylist stylist=dataSnapshot.getValue(Stylist.class);
+
+                imageView = (ImageView) findViewById(R.id.imageView);
+              //  Glide.with(DetailStore.this).load(stylist.getProfileImageUrl()).into(imageView);
+
+               // imageView.setImageResource(stylist.getProfileImageUrl());
+
+                textView1 = (TextView) findViewById(R.id.textView1);
+                textView1.setText(stylist.getShopName());
+                textView2 = (TextView) findViewById(R.id.textView2);
+                textView2.setText(stylist.getStylistAddress());
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
 
         //
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);

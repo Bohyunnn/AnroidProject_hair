@@ -200,9 +200,8 @@ public class Fragment1 extends Fragment {
             Glide.with
                     (holder.itemView.getContext())
                     .load(userModels.get(position).getProfileImageUrl())
-                    .apply(new RequestOptions().circleCrop())
                     .into(((CustomViewHolder) holder).imageView);
-            ((CustomViewHolder) holder).textView.setText(userModels.get(position).getStylistName());
+
             ((CustomViewHolder) holder).address.setText(userModels.get(position).getStylistAddress());
             ((CustomViewHolder) holder).storename.setText(userModels.get(position).getShopName());
             ((CustomViewHolder) holder).name.setText(userModels.get(position).getStylistName());
@@ -220,6 +219,7 @@ public class Fragment1 extends Fragment {
 //                }
 
                     Intent intent = new Intent(view.getContext(), DetailStore.class);
+                    intent.putExtra("destinationUid", userModels.get(position).getUid());
                     startActivity(intent);
                 }
             });
@@ -232,15 +232,14 @@ public class Fragment1 extends Fragment {
 
         private class CustomViewHolder extends RecyclerView.ViewHolder {
             public ImageView imageView;
-            public TextView textView, address, storename, name;
+            public TextView address, storename, name;
 
             public CustomViewHolder(View view) {
                 super(view);
                 address = (TextView) view.findViewById(R.id.address); //주소
                 imageView = (ImageView) view.findViewById(R.id.storeimage); //이미지
-                textView = (TextView) view.findViewById(R.id.stylistId); //아이디
-                storename = (TextView) view.findViewById(R.id.storename);
-                name = (TextView) view.findViewById(R.id.name);
+                storename = (TextView) view.findViewById(R.id.storename); // 가게 이름
+                name = (TextView) view.findViewById(R.id.name);  //스타일 리스트 이름
 
             }
         }
