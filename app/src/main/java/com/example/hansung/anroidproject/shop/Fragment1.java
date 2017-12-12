@@ -175,15 +175,11 @@ public class Fragment1 extends Fragment {
                         Stylist userModel = snapshot.getValue(Stylist.class);
 //                        String uid = snapshot.child("uid").getValue(String.class);
 //                        userModel.setUid(uid);
-                        if(userModel == null)
-                            Log.d(TAG, "userModel 이 Null입니다.");
-                        else
-                            Log.d(TAG, "userModel 이 Null이 아닙니다.");
+                        if(userModel == null) Log.d(TAG, "userModel 이 Null입니다.");
+                        else Log.d(TAG, "userModel 이 Null이 아닙니다.");
 
-                        if(userModel.getUid() == null)
-                            Log.d(TAG, "userModel.getUid()가 Null입니다.");
-                        else
-                            Log.d(TAG, "userModel.getUid()가 Null이 아닙니다.");
+                        if(userModel.getUid() == null) Log.d(TAG, "userModel.getUid()가 Null입니다.");
+                        else Log.d(TAG, "userModel.getUid()가 Null이 아닙니다.");
 
                         if (userModel.getUid().equals(myUid)) {
                             continue;

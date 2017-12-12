@@ -35,10 +35,15 @@ import java.util.Map;
 import java.util.TimeZone;
 import java.util.TreeMap;
 
-public class ChatFragment extends android.app.Fragment {
+public class ChatFragment extends Fragment {
 
 
     private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.MM.dd hh:mm");
+
+    public static ChatFragment newInstance() {
+
+        return new ChatFragment();
+    }
 
     @Nullable
     @Override
