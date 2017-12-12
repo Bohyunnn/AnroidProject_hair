@@ -67,8 +67,7 @@
                 android:id="@+id/textView4"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
-                android:text="Password: "
-                android:inputType="textPassword"/>
+                android:text="Password: " />
 
             <EditText
                 android:id="@+id/loginActivity_edittext_password"
@@ -77,7 +76,8 @@
                 android:layout_below="@+id/emailInput"
                 android:layout_centerHorizontal="true"
                 android:hint="Password"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:inputType="textPassword"/>
         </LinearLayout>
 
         <Button
