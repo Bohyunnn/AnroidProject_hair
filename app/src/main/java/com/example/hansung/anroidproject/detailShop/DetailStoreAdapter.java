@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.hansung.anroidproject.R;
 import com.example.hansung.anroidproject.deprecated.model.Product;
+import com.example.hansung.anroidproject.model.Stylist;
 
 import java.util.List;
 
@@ -25,6 +26,7 @@ public class DetailStoreAdapter extends RecyclerView.Adapter<DetailStoreAdapter.
 
     private Context mContext;
     private List<Product> productList;
+    private String profileImageUrl, ShopName, StylistName, uid, StoreAddress;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView ProductName, ProductPrice;
@@ -39,9 +41,14 @@ public class DetailStoreAdapter extends RecyclerView.Adapter<DetailStoreAdapter.
     }
 
 
-    public DetailStoreAdapter(Context mContext, List<Product> productList) {
+    public DetailStoreAdapter(Context mContext, List<Product> productList, String profileImageUrl, String ShopName, String StoreAddress, String StylistName, String uid) {
         this.mContext = mContext;
         this.productList = productList;
+        this.profileImageUrl = profileImageUrl;
+        this.ShopName = ShopName;
+        this.StoreAddress = StoreAddress;
+        this.StylistName = StylistName;
+        this.uid = uid;
     }
 
     @Override
@@ -64,10 +71,19 @@ public class DetailStoreAdapter extends RecyclerView.Adapter<DetailStoreAdapter.
         holder.reservation_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(mContext, productList.get(position).getProductName() + " 예약하기 버튼 누름", Toast.LENGTH_SHORT).show();
+
+                Toast.makeText(mContext, productList.get(position).getProductName() + "+" + uid + "예약하기 버튼 누름", Toast.LENGTH_SHORT).show();
+
                 Intent intent = new Intent(mContext, DetailStorePOP.class);
+
                 intent.putExtra("ProductName", product.getProductName());
-                intent.putExtra("ProductPrice", product.getProductPrice()+"원");
+                intent.putExtra("ProductPrice", product.getProductPrice() + "원");
+                intent.putExtra("StylistImageUrl", profileImageUrl);
+                intent.putExtra("StoreName", ShopName);
+                intent.putExtra("StoreAddress", StoreAddress);
+                intent.putExtra("StylistName", StylistName);
+                intent.putExtra("destinationUid", uid);
+
                 mContext.startActivity(intent);
             }
         });

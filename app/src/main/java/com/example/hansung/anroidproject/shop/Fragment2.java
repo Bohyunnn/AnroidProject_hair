@@ -241,7 +241,7 @@ public class Fragment2 extends Fragment implements OnMapReadyCallback {
         @Override
         public void onInfoWindowClick(Marker marker) {
             String markerId = marker.getId();
-            Toast.makeText(getContext(), "정보창 클릭 Marker ID : " + markerId, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getContext(), "정보창 클릭 Marker ID : " + markerId, Toast.LENGTH_SHORT).show();
         }
     };
 
@@ -252,7 +252,7 @@ public class Fragment2 extends Fragment implements OnMapReadyCallback {
             String markerId = marker.getId();
             //선택한 타겟위치
             LatLng location = marker.getPosition();
-            Toast.makeText(getContext(), "마커 클릭 Marker ID : " + markerId + "(" + location.latitude + " " + location.longitude + ")", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getContext(), "마커 클릭 Marker ID : " + markerId + "(" + location.latitude + " " + location.longitude + ")", Toast.LENGTH_SHORT).show();
 //            Toast.makeText(getContext(),"선택한 위치의 Rookie를 검색합니다.",Toast.LENGTH_SHORT).show();
 
             return false;

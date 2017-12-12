@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.ImageView;
 
 import com.example.hansung.anroidproject.R;
 import com.example.hansung.anroidproject.model.Stylist;
+import com.example.hansung.anroidproject.ui.HomeActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -31,13 +33,17 @@ public class stylelistSignupActivity extends AppCompatActivity {
     private EditText address;
     private Uri imageUri;
     private ImageView profile;
-
+    private String uid;
     private Button signup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stylelist_signup);
+
+        /*타이틀 바 제거*/
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
 
         profile = (ImageView) findViewById(R.id.signupActivity_imageview_profile);
         profile.setOnClickListener(new View.OnClickListener() {
@@ -72,7 +78,7 @@ public class stylelistSignupActivity extends AppCompatActivity {
                         .addOnCompleteListener(stylelistSignupActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
-                                final String uid = task.getResult().getUser().getUid();
+                                uid = task.getResult().getUser().getUid();
                                 FirebaseStorage.getInstance().getReference().child("stylistImages").child(uid).putFile(imageUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                                     @Override
                                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
@@ -90,7 +96,8 @@ public class stylelistSignupActivity extends AppCompatActivity {
                                         FirebaseDatabase.getInstance().getReference().child("stylist").child(uid).setValue(stylistModel).addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
                                             public void onSuccess(Void aVoid) {
-                                                stylelistSignupActivity.this.finish();
+                                                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                                                startActivity(intent);
                                             }
                                         });
 

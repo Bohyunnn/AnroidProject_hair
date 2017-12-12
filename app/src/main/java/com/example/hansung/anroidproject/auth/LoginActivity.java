@@ -3,6 +3,7 @@ package com.example.hansung.anroidproject.auth;
 import android.content.Intent;
 
 import android.support.annotation.NonNull;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -19,7 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 
-public class LoginActivity extends AppCompatActivity  {
+public class LoginActivity extends AppCompatActivity {
 
     private EditText id;
     private EditText password;
@@ -34,6 +35,10 @@ public class LoginActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        /*타이틀 바 제거*/
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
+
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseAuth.signOut();
 
@@ -42,7 +47,7 @@ public class LoginActivity extends AppCompatActivity  {
 
         login = (Button) findViewById(R.id.loginActivity_button_login);
 
-        usersignup=(Button)findViewById(R.id.loginActivity_button_user_signup);
+        usersignup = (Button) findViewById(R.id.loginActivity_button_user_signup);
         stylesignup = (Button) findViewById(R.id.loginActivity_button_stylelist_signup);
 
 
@@ -61,7 +66,6 @@ public class LoginActivity extends AppCompatActivity  {
         });
 
 
-
         stylesignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -75,12 +79,12 @@ public class LoginActivity extends AppCompatActivity  {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
-                if(user != null){
+                if (user != null) {
                     //로그인
-                    Intent intent = new Intent(LoginActivity.this,HomeActivity.class);
+                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                     startActivity(intent);
                     finish();
-                }else{
+                } else {
                     //로그아웃
                 }
 

@@ -5,6 +5,7 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
@@ -13,8 +14,24 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.example.hansung.anroidproject.auth.stylelistSignupActivity;
+import com.example.hansung.anroidproject.model.BookModel;
+import com.example.hansung.anroidproject.model.Customer;
+import com.example.hansung.anroidproject.model.Stylist;
 import com.example.hansung.anroidproject.ui.HomeActivity;
 import com.example.hansung.anroidproject.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ServerValue;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.UploadTask;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -30,6 +47,9 @@ public class DetailStorePOP_Book extends Activity {
     String Date;
     String Time;
 
+    private Stylist stylist;
+
+    private String name, price, stylistuid, profileImageUrl, ShopName, StylistName, userid,StoreAddress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +57,22 @@ public class DetailStorePOP_Book extends Activity {
         //타이틀바 없애기
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_detail_store_pop__book);
+
+        //데이터 가져옴
+
+        /*
+         제품 이름, 제품 가격, 미용사 아이디
+         */
+
+        Intent intent = getIntent();
+        name = intent.getStringExtra("ProductName");
+        price = intent.getStringExtra("ProductPrice");
+        profileImageUrl = getIntent().getStringExtra("StylistImageUrl");
+        ShopName = getIntent().getStringExtra("StoreName");
+        StylistName = getIntent().getStringExtra("StylistName");
+        StoreAddress = intent.getStringExtra("StoreAddress");
+        stylistuid = intent.getStringExtra("destinationUid");     //미용사 아이디
+        userid = FirebaseAuth.getInstance().getCurrentUser().getUid();  //현재 로그인된 사용자 아이디
 
         //텍스트뷰 2개 연결
         mTxtDate = (TextView) findViewById(R.id.mTxtDate);
@@ -105,9 +141,9 @@ public class DetailStorePOP_Book extends Activity {
 
     //텍스트뷰의 값을 업데이트 하는 메소드
     void UpdateNow() {
-        Date=String.format("%d년 %d월 %d일", mYear, mMonth + 1, mDay);
+        Date = String.format("%d년 %d월 %d일", mYear, mMonth + 1, mDay);
         mTxtDate.setText(Date);
-        Time=String.format("%d시 %d분", mHour, mMinute);
+        Time = String.format("%d시 %d분", mHour, mMinute);
         mTxtTime.setText(Time);
     }
 
@@ -118,10 +154,63 @@ public class DetailStorePOP_Book extends Activity {
 //        intent.putExtra("result", "Close Popup");
 //        setResult(RESULT_OK, intent);
 //
-        Intent intent=new Intent(this,HomeActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
-        Toast.makeText(this, "예약하기 누름", Toast.LENGTH_SHORT).show();
+//        Intent intent = new Intent(this, HomeActivity.class);
+//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//        //데이터 저장
+//        intent.putExtra("ProductName", name);
+//        intent.putExtra("ProductPrice", price);
+//        intent.putExtra("destinationUid", stylistuid);
+
+        Toast.makeText(this, "name=" + name + ", price=" + price + ", uid=" + stylistuid + " 예약하기", Toast.LENGTH_SHORT).show();
+//파이어베이스에 예약 데이터 넣기
+        BookModel bookModel = new BookModel();
+
+        String myUID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+//        stylist = new Stylist();
+//        FirebaseDatabase.getInstance().getReference().child("stylist").child(stylistuid).addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+//                    stylist.setUid(stylistuid);
+//                    stylist.setShopName(snapshot.child("stylistName").getValue(String.class));
+//                    stylist.setStylistEmail(snapshot.child("stylistEmail").getValue(String.class));
+//                    stylist.setProfileImageUrl(snapshot.child("profileImageUrl").getValue(String.class));
+//                    stylist.setStylistName(snapshot.child("stylistName").getValue(String.class));
+//                    stylist.setStylistAddress(snapshot.child("stylistAddress").getValue(String.class));
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        });
+
+        bookModel.setBookUser(myUID);
+        bookModel.setBookStylist(stylistuid);
+
+        bookModel.setProductName(name);
+        bookModel.setProductPrice(price);
+
+        bookModel.setBookDate(Date);
+        bookModel.setBookTime(Time);
+
+        bookModel.setShopName(ShopName);
+        bookModel.setStylistName(StylistName);
+        bookModel.setStoreAddress(StoreAddress);
+
+        FirebaseDatabase.getInstance().getReference().child("Book").push().setValue(bookModel).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                startActivity(intent);
+            }
+        });
+
+// ------------------------------
+//        startActivity(intent);
+        //Toast.makeText(this, "예약하기 누름", Toast.LENGTH_SHORT).show();
     }
 
     //취소버튼

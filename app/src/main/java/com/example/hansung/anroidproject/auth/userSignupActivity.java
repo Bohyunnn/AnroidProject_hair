@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.ImageView;
 
 import com.example.hansung.anroidproject.R;
 import com.example.hansung.anroidproject.model.Customer;
+import com.example.hansung.anroidproject.ui.HomeActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -38,6 +40,10 @@ public class userSignupActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_signup);
+
+              /*타이틀 바 제거*/
+        ActionBar actionBar=getSupportActionBar();
+        actionBar.hide();
 
         profile = (ImageView) findViewById(R.id.signupActivity_imageview_profile);
         profile.setOnClickListener(new View.OnClickListener() {
@@ -85,7 +91,8 @@ public class userSignupActivity extends AppCompatActivity {
                                         FirebaseDatabase.getInstance().getReference().child("users").child(uid).setValue(userModel).addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
                                             public void onSuccess(Void aVoid) {
-                                                userSignupActivity.this.finish();
+                                                Intent intent=new Intent(getApplicationContext(), HomeActivity.class);
+                                                startActivity(intent);
                                             }
                                         });
 

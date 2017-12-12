@@ -43,10 +43,11 @@
                         <ImageView
                             android:id="@+id/storeimage"
                             android:layout_width="70dp"
-                            android:layout_height="70dp"
+                            android:layout_height="80dp"
+                            android:layout_marginRight="7dp"
                             android:layout_marginTop="7dp"
                             android:layout_weight="1"
-                            android:background="@drawable/com_facebook_profile_picture_blank_square"
+                            android:background="@drawable/reservationicon"
                             android:clickable="true"
                             android:scaleType="fitXY" />
 
@@ -64,6 +65,19 @@
                             android:layout_marginRight="1dp"
                             android:orientation="vertical">
 
+                            <TextView
+                                android:id="@+id/bookstate"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/storeimage"
+                                android:layout_marginBottom="3dp"
+                                android:layout_weight="1"
+                                android:padding="3dp"
+                                android:text="[ 예약 ]"
+                                android:textColor="@color/deep_orange_500"
+                                android:textSize="12sp"
+                                android:textStyle="bold" />
+
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
@@ -72,15 +86,15 @@
                                 android:orientation="horizontal">
 
                                 <TextView
-                                    android:id="@+id/bookstate"
+                                    android:id="@+id/bookDate"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_below="@id/storeimage"
-                                    android:layout_marginBottom="3dp"
+                                    android:layout_margin="3dp"
                                     android:padding="3dp"
-                                    android:text="[bookState]"
-                                    android:textColor="@color/deep_orange_500"
-                                    android:textSize="12sp"
+                                    android:text="bookDate"
+                                    android:textColor="@color/album_title"
+                                    android:textSize="15sp"
                                     android:textStyle="bold" />
 
                                 <TextView
@@ -88,27 +102,49 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_below="@id/storeimage"
-                                    android:layout_marginBottom="3dp"
+                                    android:layout_margin="3dp"
+                                    android:layout_marginRight="5dp"
                                     android:padding="3dp"
                                     android:text="bookTime"
                                     android:textColor="@color/album_title"
-                                    android:textSize="12sp"
+                                    android:textSize="15sp"
                                     android:textStyle="bold" />
+
                             </LinearLayout>
 
-                            <TextView
-                                android:id="@+id/storename"
+                            <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_below="@id/storeimage"
-                                android:layout_marginBottom="5dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginBottom="3dp"
                                 android:layout_weight="1"
-                                android:padding="3dp"
-                                android:text="storename"
-                                android:textColor="@color/album_title"
-                                android:textSize="12sp"
-                                android:textStyle="bold" />
+                                android:orientation="horizontal">
 
+                                <TextView
+                                    android:id="@+id/productName"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@id/storeimage"
+                                    android:layout_margin="3dp"
+                                    android:padding="3dp"
+                                    android:text="productName"
+                                    android:textColor="@color/album_title"
+                                    android:textSize="13sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/productPrice"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@id/storeimage"
+                                    android:layout_margin="3dp"
+                                    android:padding="3dp"
+                                    android:text="productPrice"
+                                    android:textColor="@color/album_title"
+                                    android:textSize="13sp"
+                                    android:textStyle="bold" />
+
+                            </LinearLayout>
+<!--
                             <TextView
                                 android:id="@+id/name"
                                 android:layout_width="match_parent"
@@ -129,6 +165,19 @@
                                 android:text="address"
                                 android:textSize="12sp" />
 
+                            <TextView
+                                android:id="@+id/storename"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/storeimage"
+                                android:layout_marginBottom="5dp"
+                                android:layout_weight="1"
+                                android:padding="3dp"
+                                android:text="storename"
+                                android:textColor="@color/album_title"
+                                android:textSize="12sp"
+                                android:textStyle="bold" />
+-->
                         </LinearLayout>
 
                     </RelativeLayout>

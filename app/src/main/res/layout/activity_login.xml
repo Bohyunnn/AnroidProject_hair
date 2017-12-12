@@ -14,6 +14,7 @@
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
         android:padding="3dp"
         android:paddingBottom="50dp"
         android:text="안녕하세요. Rookie 헤어입니다."

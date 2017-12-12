@@ -22,6 +22,7 @@ import com.bumptech.glide.Glide;
 import com.example.hansung.anroidproject.R;
 import com.example.hansung.anroidproject.deprecated.model.Product;
 import com.example.hansung.anroidproject.model.Stylist;
+import com.example.hansung.anroidproject.shop.Fragment1;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -34,7 +35,7 @@ public class DetailStore extends AppCompatActivity {
     TextView textView1, textView2, textView3;
     ImageView imageView;
     Intent intent;
-    private int storeimage;
+    private String storeimage;
 
     private DetailStoreAdapter adapter;
     private List<Product> productList;
@@ -53,9 +54,18 @@ public class DetailStore extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("스타일");
+/*
+   intent.putExtra("StylistImageUrl", userModels.get(position).getProfileImageUrl());
+        intent.putExtra("StoreName", userModels.get(position).getShopName());
+        intent.putExtra("StylistName", userModels.get(position).getStylistName());
+        intent.putExtra("destinationUid", userModels.get(position).getUid());
 
-
+ */
+        storeimage=getIntent().getStringExtra("StylistImageUrl");
+        String ShopName=getIntent().getStringExtra("StoreName");
+        String StylistName=getIntent().getStringExtra("StylistName");
         String uid=getIntent().getStringExtra("destinationUid");
+        String StoreAddress=getIntent().getStringExtra("StoreAddress");
 
         FirebaseDatabase.getInstance().getReference().child("stylist").child(uid).addValueEventListener(new ValueEventListener() {
             @Override
@@ -64,7 +74,7 @@ public class DetailStore extends AppCompatActivity {
 
                 imageView = (ImageView) findViewById(R.id.imageView);
               //  Glide.with(DetailStore.this).load(stylist.getProfileImageUrl()).into(imageView);
-
+                Glide.with(DetailStore.this).load(stylist.getProfileImageUrl()).into((ImageView) findViewById(R.id.imageView));
                // imageView.setImageResource(stylist.getProfileImageUrl());
 
                 textView1 = (TextView) findViewById(R.id.textView1);
@@ -83,8 +93,16 @@ public class DetailStore extends AppCompatActivity {
         //
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
+        /*
+         String profileImageUrl=getIntent().getStringExtra("StylistImageUrl");
+        String ShopName=getIntent().getStringExtra("StoreName");
+        String StylistName=getIntent().getStringExtra("StylistName");
+        String uid=getIntent().getStringExtra("destinationUid");
+
+         */
+
         productList = new ArrayList<>();
-        adapter = new DetailStoreAdapter(this, productList);
+        adapter = new DetailStoreAdapter(this, productList,storeimage,ShopName,StoreAddress,StylistName, uid);
 
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 1);
         recyclerView.setLayoutManager(mLayoutManager);
@@ -95,7 +113,7 @@ public class DetailStore extends AppCompatActivity {
         prepareAlbums();
 
         try {
-            Glide.with(this).load(storeimage).into((ImageView) findViewById(R.id.backdrop));
+            Glide.with(this).load(storeimage).into((ImageView) findViewById(R.id.imageView));
         } catch (Exception e) {
             e.printStackTrace();
         }

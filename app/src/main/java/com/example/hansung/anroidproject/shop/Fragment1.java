@@ -210,16 +210,13 @@ public class Fragment1 extends Fragment {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //                Intent intent = new Intent(view.getContext(), MessageActivity.class);
-//                intent.putExtra("destinationUid", userModels.get(position).uid);
-//                ActivityOptions activityOptions = null;
-//                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
-//                    activityOptions = ActivityOptions.makeCustomAnimation(view.getContext(), R.anim.fromright, R.anim.toleft);
-//                    startActivity(intent, activityOptions.toBundle());
-//                }
-
                     Intent intent = new Intent(view.getContext(), DetailStore.class);
+                    intent.putExtra("StylistImageUrl", userModels.get(position).getProfileImageUrl());
+                    intent.putExtra("StoreName", userModels.get(position).getShopName());
+                    intent.putExtra("StylistName", userModels.get(position).getStylistName());
                     intent.putExtra("destinationUid", userModels.get(position).getUid());
+                    intent.putExtra("StoreAddress",userModels.get(position).getStylistAddress());
+
                     startActivity(intent);
                 }
             });

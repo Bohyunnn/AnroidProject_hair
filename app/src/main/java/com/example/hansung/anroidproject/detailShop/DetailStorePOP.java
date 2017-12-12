@@ -17,6 +17,9 @@ import com.example.hansung.anroidproject.R;
 public class DetailStorePOP extends Activity {
 
     private TextView ProductName;
+    private String destinationUid, profileImageUrl, ShopName, StylistName, StoreAddress;
+    private String name;
+    private String price;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,11 +31,19 @@ public class DetailStorePOP extends Activity {
         //UI 객체생성
         ProductName = (TextView) findViewById(R.id.ProductName);
 
+
         //데이터 가져오기
         Intent intent = getIntent();
-        String name = intent.getStringExtra("ProductName");
-        String price = intent.getStringExtra("ProductPrice");
-        ProductName.setText("[ " + name + " ] " + price + " 입니다.");
+
+        name = intent.getStringExtra("ProductName");
+        price = intent.getStringExtra("ProductPrice");
+        profileImageUrl = getIntent().getStringExtra("StylistImageUrl");
+        ShopName = getIntent().getStringExtra("StoreName");
+        StylistName = getIntent().getStringExtra("StylistName");
+        StoreAddress = getIntent().getStringExtra("StoreAddress");
+        destinationUid = intent.getStringExtra("destinationUid");
+
+        ProductName.setText(ShopName+"의 [ " + name + " ] " + price + " 입니다.");
     }
 
     //예약하기 버튼 클릭
@@ -42,9 +53,17 @@ public class DetailStorePOP extends Activity {
 //        intent.putExtra("result", "Close Popup");
 //        setResult(RESULT_OK, intent);
 //
-        Intent intent=new Intent(this,DetailStorePOP_Book.class);
+        Intent intent = new Intent(this, DetailStorePOP_Book.class);
+        intent.putExtra("StylistImageUrl", profileImageUrl);
+        intent.putExtra("StoreName", ShopName);
+        intent.putExtra("StylistName", StylistName);
+        intent.putExtra("destinationUid", destinationUid);
+        intent.putExtra("StoreAddress", StoreAddress);
+        intent.putExtra("ProductName", name);
+        intent.putExtra("ProductPrice", price);
+
         startActivity(intent);
-        Toast.makeText(this, "예약하기 누름", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, destinationUid + " 예약하기 누름", Toast.LENGTH_SHORT).show();
     }
 
     //취소버튼
