@@ -23,7 +23,8 @@
             android:id="@+id/signupActivity_edittext_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="이메일" />
+            android:hint="이메일"
+            android:singleLine="true" />
 
     </android.support.design.widget.TextInputLayout>
 
@@ -35,7 +36,8 @@
             android:id="@+id/signupActivity_edittext_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="이름" />
+            android:hint="이름"
+            android:singleLine="true" />
 
     </android.support.design.widget.TextInputLayout>
 
@@ -49,7 +51,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="패스워드"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:singleLine="true" />
 
     </android.support.design.widget.TextInputLayout>
 

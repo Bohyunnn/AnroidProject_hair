@@ -85,7 +85,7 @@ public class DetailStore extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 stylist=dataSnapshot.getValue(Stylist.class);
 
-                imageView = (ImageView) findViewById(R.id.imageView);
+//                imageView = (ImageView) findViewById(R.id.imageView);
               //  Glide.with(DetailStore.this).load(stylist.getProfileImageUrl()).into(imageView);
                 Glide.with(DetailStore.this).load(stylist.getProfileImageUrl()).into((ImageView) findViewById(R.id.imageView));
                // imageView.setImageResource(stylist.getProfileImageUrl());

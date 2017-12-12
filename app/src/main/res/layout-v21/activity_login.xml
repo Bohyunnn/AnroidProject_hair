@@ -50,6 +50,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="5dp"
                 android:hint="Email"
+                android:singleLine="true"
                 android:textSize="14sp" />
         </LinearLayout>
 
@@ -76,8 +77,9 @@
                 android:layout_below="@+id/emailInput"
                 android:layout_centerHorizontal="true"
                 android:hint="Password"
-                android:textSize="14sp"
-                android:inputType="textPassword"/>
+                android:inputType="textPassword"
+                android:singleLine="true"
+                android:textSize="14sp" />
         </LinearLayout>
 
         <Button

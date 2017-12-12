@@ -1,13 +1,18 @@
 package com.example.hansung.anroidproject.ui;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -16,20 +21,42 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.net.Uri;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 
+import com.bumptech.glide.Glide;
 import com.example.hansung.anroidproject.R;
 import com.example.hansung.anroidproject.auth.LoginActivity;
+import com.example.hansung.anroidproject.chat.ChatFragment;
 import com.example.hansung.anroidproject.navi.ServiceContact;
 import com.example.hansung.anroidproject.navi.ServiceIntro;
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.List;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    private static final String TAG = "HomeActivity";
 
-    private TextView nameTextView;
-    private TextView emailTextView;
+    /* nav-header-home에 보여질 현자 사용자 이름, 이메일, 권한 */
+    private ImageView mHeaderProfileImage;
+    private TextView mHeaderName;
+    private TextView mHeaderEmail;
+    private TextView mHeaderAuthority;
+
     private FirebaseAuth auth; //아이디랑 비밀번호 받아옴(싱글톤 패턴으로)
 
     //툴바
@@ -79,15 +106,66 @@ public class HomeActivity extends AppCompatActivity
 
         //nav_header_home.xml 설정
         View view = navigationView.getHeaderView(0);
-        nameTextView = (TextView) view.findViewById(R.id.header_name_textView);
-        emailTextView = (TextView) view.findViewById(R.id.header_email_textView);
+        mHeaderProfileImage = (ImageView) view.findViewById(R.id.header_profile_imageView);
+        mHeaderName = (TextView) view.findViewById(R.id.header_name_textView);
+        mHeaderEmail = (TextView) view.findViewById(R.id.header_email_textView);
+        mHeaderAuthority = (TextView) view.findViewById(R.id.header_authority_textView);
 
-        //auth에서 name과 email 받아옴.
-        nameTextView.setText(auth.getCurrentUser().getDisplayName());
-        emailTextView.setText(auth.getCurrentUser().getEmail());
-        //
+        /* auth.getCurrentUser()로는 없는 필드가 있고
+         * 직접 Firebase로부터 가져와야하는듯.. */
+        final String myUID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        // 1. 고객인 경우
+        FirebaseDatabase.getInstance().getReference().child("users").child(myUID).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+//                for (DataSnapshot fileSnapshot : dataSnapshot.getChildren()) {
+                    String profileImageUrl = dataSnapshot.child("profileImageUrl").getValue(String.class);
+                    String shopName = dataSnapshot.child("shopName").getValue(String.class);
+                    String stylistAddress = dataSnapshot.child("stylistAddress").getValue(String.class);
+                    String stylistEmail = dataSnapshot.child("stylistEmail").getValue(String.class);
+                    String stylistName = dataSnapshot.child("stylistName").getValue(String.class);
 
+                    Log.d(TAG, "myUID : " + myUID);
+                    Log.d(TAG, "profileImageUrl : " + profileImageUrl);
+                    Log.d(TAG, "stylistEmail : " + stylistEmail);
+                    Log.d(TAG, "stylistName : " + stylistName);
 
+                    /* ui 변경 */
+//                    mHeaderProfileImage.setImageBitmap(getImageBitmap(profileImage));
+                    Glide.with(HomeActivity.this).load(profileImageUrl).into((ImageView) findViewById(R.id.header_profile_imageView));
+                    mHeaderName.setText(stylistName);
+                    mHeaderEmail.setText(stylistEmail);
+                    mHeaderAuthority.setText("스타일리스트님!");
+//                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) { }
+        });
+        // 2. 스타일리스트인 경우
+        FirebaseDatabase.getInstance().getReference().child("stylist").child(myUID).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+//                for (DataSnapshot fileSnapshot : dataSnapshot.getChildren()) {
+                String profileImage = dataSnapshot.child("profileImagePath").getValue(String.class);
+                String userEmail = dataSnapshot.child("userEmail").getValue(String.class);
+                String userName = dataSnapshot.child("userName").getValue(String.class);
+
+                Log.d(TAG, "myUID : " + myUID);
+                Log.d(TAG, "profileImage : " + profileImage);
+                Log.d(TAG, "userEmail : " + userEmail);
+                Log.d(TAG, "userName : " + userName);
+
+                    /* ui 변경 */
+//                    mHeaderProfileImage.setImageBitmap(getImageBitmap(profileImage));
+                Glide.with(HomeActivity.this).load(profileImage).into((ImageView) findViewById(R.id.header_profile_imageView));
+                mHeaderName.setText(userName);
+                mHeaderEmail.setText(userEmail);
+                mHeaderAuthority.setText("고객님!");
+//                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) { }
+        });
     }
 
     //뒤로 가기 버튼 처리시
@@ -143,7 +221,12 @@ public class HomeActivity extends AppCompatActivity
             Intent intent = new Intent(this,ServiceContact.class);
             startActivity(intent);
         }
-        else if (id == R.id.nav_logout) {
+        else if (id == R.id.service_chatting){
+            FragmentTransaction chatFragmentTransaction = getSupportFragmentManager().beginTransaction();
+            Fragment fragment = ChatFragment.newInstance();
+            chatFragmentTransaction.add(R.id.chatting_content, fragment);
+            chatFragmentTransaction.commit();
+        } else if (id == R.id.nav_logout) {
            //로그아웃
             auth.signOut();
             LoginManager.getInstance().logOut(); //facebook logout 경우
@@ -167,5 +250,23 @@ public class HomeActivity extends AppCompatActivity
 
         mTabLayout = (TabLayout) findViewById(R.id.tab);
         mTabLayout.setupWithViewPager(mViewPager);
+    }
+
+    /* 프사 이미지 */
+    private Bitmap getImageBitmap(String strUrl){
+        Bitmap bitmap = null;
+        try{
+            URL url = new URL(strUrl);
+            URLConnection connection = url.openConnection();
+            connection.connect();
+            InputStream is = connection.getInputStream();
+            BufferedInputStream bis = new BufferedInputStream(is);
+            bitmap = BitmapFactory.decodeStream(bis);
+            bis.close();
+            is.close();
+        } catch (IOException e){
+            Log.d(TAG, "Error getting bitmap", e);
+        }
+        return bitmap;
     }
 }
