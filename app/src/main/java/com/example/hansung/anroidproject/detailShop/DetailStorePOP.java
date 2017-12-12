@@ -43,7 +43,7 @@ public class DetailStorePOP extends Activity {
         StoreAddress = getIntent().getStringExtra("StoreAddress");
         destinationUid = intent.getStringExtra("destinationUid");
 
-        ProductName.setText(ShopName+"의 [ " + name + " ] " + price + " 입니다.");
+        ProductName.setText("[ " + name + " ] " + price + " 입니다.");
     }
 
     //예약하기 버튼 클릭
