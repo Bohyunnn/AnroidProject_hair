@@ -131,7 +131,7 @@ public class Fragment2 extends Fragment implements OnMapReadyCallback {
             public void onClick(View view) {
                 Snackbar.make(view, " " + choice_do + " " + choice_se + " 검색합니다.", Snackbar.LENGTH_LONG).show();
                 findGeoPoint(getContext(), choice_do + " " + choice_se);
-                Toast.makeText(getContext(), choice_do + " " + choice_se + "로 검색합니다.", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(), choice_do + " " + choice_se + "로 검색합니다.", Toast.LENGTH_SHORT).show();
                 Searchlocation = new LatLng(lat, lon);  //새로운 위도, 경도로 검색
                 map.moveCamera(CameraUpdateFactory.newLatLngZoom(Searchlocation, 15));
             }

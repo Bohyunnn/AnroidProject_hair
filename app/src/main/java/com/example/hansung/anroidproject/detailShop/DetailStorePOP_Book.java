@@ -217,7 +217,7 @@ public class DetailStorePOP_Book extends Activity {
     public void cancelButton(View v) {
         //액티비티(팝업) 닫기
         finish();
-        Toast.makeText(this, "취소 누름", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "취소 누름", Toast.LENGTH_SHORT).show();
     }
 
     @Override

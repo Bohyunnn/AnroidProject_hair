@@ -151,7 +151,7 @@ public class DetailStore extends AppCompatActivity {
 
     public void onLocationSearch(View view) {
         //지도 클릭시 지도 띄어줄 부분
-        Toast.makeText(this, stylist.getStylistAddress() + " 지도를 보여줘!", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, stylist.getStylistAddress() + " 지도를 보여줘!", Toast.LENGTH_SHORT).show();
         Intent intent2 = new Intent(this, DetailStorePOP_location.class);
         intent2.putExtra("storename",stylist.getShopName());
         intent2.putExtra("location", stylist.getStylistAddress());
