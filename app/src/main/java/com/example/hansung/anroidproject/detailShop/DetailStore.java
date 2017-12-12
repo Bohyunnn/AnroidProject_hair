@@ -20,16 +20,21 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.hansung.anroidproject.R;
+import com.example.hansung.anroidproject.chat.MessageActivity;
 import com.example.hansung.anroidproject.deprecated.model.Product;
 import com.example.hansung.anroidproject.model.Stylist;
 import com.example.hansung.anroidproject.shop.Fragment1;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class DetailStore extends AppCompatActivity {
     TextView textView1, textView2, textView3;
@@ -43,6 +48,11 @@ public class DetailStore extends AppCompatActivity {
 
     private Button locationSearch; //지도 검색
     private String storename,location;
+
+    private Button chattingButton;
+
+    private String destinationUID; // 상대방 UID
+
     private  Stylist stylist;
 
 
@@ -67,7 +77,10 @@ public class DetailStore extends AppCompatActivity {
         String uid=getIntent().getStringExtra("destinationUid");
         String StoreAddress=getIntent().getStringExtra("StoreAddress");
 
-        FirebaseDatabase.getInstance().getReference().child("stylist").child(uid).addValueEventListener(new ValueEventListener() {
+
+        destinationUID = getIntent().getStringExtra("destinationUid");
+
+        FirebaseDatabase.getInstance().getReference().child("stylist").child(destinationUID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 stylist=dataSnapshot.getValue(Stylist.class);
@@ -120,6 +133,9 @@ public class DetailStore extends AppCompatActivity {
 
         locationSearch = (Button) findViewById(R.id.locationSearch);
 
+        /* 채팅 문의 버튼 + 토큰 받아오는 메서드 */
+        chattingButton = (Button) findViewById(R.id.chattingButton);
+//        passPushTokenToServer();
     }
 
     //ActionBar's Back Button
@@ -156,6 +172,14 @@ public class DetailStore extends AppCompatActivity {
         intent2.putExtra("storename",stylist.getShopName());
         intent2.putExtra("location", stylist.getStylistAddress());
         startActivity(intent2);
+    }
+
+    /* chattingButton 클릭시 MessageAcitivity 이동 */
+    public void onClickChattingButton(View view){
+        Toast.makeText(this, "궁금한 것을 문의해보세요.", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, MessageActivity.class);
+        intent.putExtra("destinationUid", destinationUID); // 상대방 uid
+        startActivity(intent);
     }
 
     public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
@@ -198,5 +222,15 @@ public class DetailStore extends AppCompatActivity {
         return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
     }
 
+    /* 1:1 문의 버튼 클릭시 채팅기능에 필요한 메서드
+     * by Howl 예제 . Bohyun 브랜치에 직접 작업중 */
+    void passPushTokenToServer(){
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        String token = FirebaseInstanceId.getInstance().getToken();
+        Map<String,Object> map = new HashMap<>();
+        map.put("pushToken",token);
+
+        FirebaseDatabase.getInstance().getReference().child("stylist").child(uid).updateChildren(map);
+    }
 
 }

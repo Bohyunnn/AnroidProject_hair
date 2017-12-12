@@ -61,7 +61,8 @@
             android:name=".detailShop.DetailStorePOP_Book"
             android:theme="@android:style/Theme.Dialog" />
         <activity android:name=".auth.stylelistSignupActivity" />
-        <activity android:name=".auth.userSignupActivity"></activity>
+        <activity android:name=".auth.userSignupActivity" />
+        <activity android:name=".chat.MessageActivity"></activity>
     </application>
 
 </manifest>

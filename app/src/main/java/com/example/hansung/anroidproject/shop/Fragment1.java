@@ -12,6 +12,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,6 +40,8 @@ import java.util.List;
   HomeActivity.java에서 1번째) 스타일 탭
  */
 public class Fragment1 extends Fragment {
+    private static final String TAG = "Fragment1";
+
     private View view;
 
     public static final String TITLE = "스타일";
@@ -157,6 +160,11 @@ public class Fragment1 extends Fragment {
         public PeopleFragmentRecyclerViewAdapter() {
             userModels = new ArrayList<>();
             final String myUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+            if(myUid == null)
+                Log.d(TAG, "받아옴! myUid가 Null입니다.");
+            else
+                Log.d(TAG, "받아옴! myUid가 Null이 아닙니다.");
+
             FirebaseDatabase.getInstance().getReference().child("stylist").addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -164,8 +172,18 @@ public class Fragment1 extends Fragment {
 
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
 
-
                         Stylist userModel = snapshot.getValue(Stylist.class);
+//                        String uid = snapshot.child("uid").getValue(String.class);
+//                        userModel.setUid(uid);
+                        if(userModel == null)
+                            Log.d(TAG, "userModel 이 Null입니다.");
+                        else
+                            Log.d(TAG, "userModel 이 Null이 아닙니다.");
+
+                        if(userModel.getUid() == null)
+                            Log.d(TAG, "userModel.getUid()가 Null입니다.");
+                        else
+                            Log.d(TAG, "userModel.getUid()가 Null이 아닙니다.");
 
                         if (userModel.getUid().equals(myUid)) {
                             continue;
